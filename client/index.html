@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+   ****************************************************************************
+   *   GATB online editor.                                                    *
+   *                                                                          *
+   *   Rely on:                                                               *
+   *      https://ace.c9.io/#api (the c++ editor)                             *
+   *     https://allgo.inria.fr (hosting the GATB compiler VM)                *
+   *                                                                          *
+   *   Author: Patrick Durand, Inria - October 2016                           *
+   *                                                                          *
+   *   License: release under the terms of Affero-GPL                         *
+   *   https://www.gnu.org/licenses/agpl-3.0.txt                              *
+   ****************************************************************************
+-->
+  <head>
+    <title>GATB-Core: Online Tutorial</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- Load Bootstrap CSS -->
+    <link 
+          rel="stylesheet" 
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Load GATB-Compiler CSS -->
+    <link 
+          rel="stylesheet" 
+          href="css/gatb-compiler.css">
+
+    <!-- Load JQuery -->
+    <script
+          src="https://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous"></script>
+    <!-- Load Bootsrap -->
+    <script 
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Load GATB Tutorial globals definitions -->
+    <script 
+          src="js/globals.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+    <!-- Load GATB Tutorial Code Snippets handler -->
+    <script 
+          src="js/code_snippets.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+  </head>
+
+  <body>
+    <div style="margin: auto; width: 80%;">
+      <div class="page-header">
+        <h2><span class="glyphicon glyphicon-education" aria-hidden="true"></span> GATB-Core Tutorial <small>The <span id="tutorial-title"></span> Trail</small></h2>
+      </div>
+    </div>
+
+    <!-- *
+         * We list the GATB lessons for this trail in the "trail-concepts" element.
+         *
+      -->
+    <div style="margin: auto; width: 80%;">
+      <span id="trail-concepts"></span>
+    </div>
+    
+    <div style="margin: auto; width: 80%;">
+      <span id="trail-nav-bar"></span>
+    </div>
+
+    <!-- *
+         * We setup the info collapse panel.
+         *
+      -->
+    <div style="margin: auto; width: 80%;">
+      <br/>
+      <button data-toggle="collapse" data-target="#snippet-info"><span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span></button>
+        <div id="snippet-info" class="collapse" style="width: 80%;">
+        All c++ code snippets presented in this tutorial are available as part of the official GATB-Core library (tag/release <span id="gatb-core-release"></span>) available on <a href='https://github.com/GATB/gatb-core' target='_blank'>Github</a>. These codes are located in the <i>examples</i> directory. 
+        To compile and run these snippets on your local computer:
+        <ul>
+          <li>start by downloading GATB-Core library from a command line:<br/>
+              git clone https://github.com/GATB/gatb-core.git<br/>
+              git checkout <span id="gatb-core-release-tag"></span>
+          </li>
+          <li>then, read <a href='http://gatb-core.gforge.inria.fr/doc/api/compilation.html' target='_blank'>this documentation</a></li>
+        </ul>
+        </div>
+    </div>
+
+    <!-- *
+         * We setup the page footer.
+         *
+      -->
+    <div class="footer">
+      <p align="center">
+        <br /> <br /> 
+        <a href="http://gatb-core.gforge.inria.fr/training">GATB Tutorial Trail</a> <span id='tuto-release-tag'></span> &#x223c; 
+        Made with &#x2764; by Genscale Team &#x223c; INRIA/IRISA Rennes, France <br /> 
+        Powered by <a href="https://allgo.inria.fr/" target="_blank">A||GO</a> and 
+        <a href="https://ace.c9.io" target="_blank">Ace</a> /
+        <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
+        <!-- beta dev. notice -->
+        <span id="nav-beta-notice"></span>
+        <!-- beta dev. notice --> 
+      </p>
+    </div>
+
+      <script>
+        var trailName=getUrlParameter("trail");
+        if (trailName===undefined){
+          trailName=ROOKIE_TRAIL;
+        }
+        document.title = "GATB-Core: The "+trailName+" Trail Tutorial";
+        $("#tutorial-title").html(trailName);
+        updateTrailConcepts(trailName, getUrlParameter("cat"));
+        updateTrailNavBar(trailName);
+        $("#gatb-core-release").html(GATB_RELEASE);
+        $("#gatb-core-release-tag").html(GATB_RELEASE);
+        $("#tuto-release-tag").html(GATB_ONLINE_TUTO_RELEASE);
+        checkBrowser();
+      </script>
+    
+
+  </body>
+</html>

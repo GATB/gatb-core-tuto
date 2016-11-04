@@ -1,0 +1,14 @@
+# This file contains mapping from data-set key to data-set file.
+# data-set key is used within the GATB-Compiler web page (client side).
+# data-set file is a real filepath located on ALLGO/GATB-Compiler app
+# (server side).
+#
+# Author: Patrick Durand, Inria - October 1026
+
+fasta_small=/home/allgo/data/celegans_reads.fasta
+fastq_small=/home/allgo/data/celegans_reads.fastq
+# the fasta_medium file comes from gatb-core/gatb-core/test/db: reads3.fa.gz
+fasta_medium=/home/allgo/data/dna_sample_5K.fa.gz 
+h5_small=/home/allgo/data/celegans_reads.h5
+snp_small=/home/allgo/data/snp_reads.fasta
+

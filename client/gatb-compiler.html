@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+   ****************************************************************************
+   *   GATB online editor.                                                    *
+   *                                                                          *
+   *   Rely on:                                                               *
+   *      https://ace.c9.io/#api (the c++ editor)                             *
+   *     https://allgo.inria.fr (hosting the GATB compiler VM)                *
+   *                                                                          *
+   *   Author: Patrick Durand, Inria - October 2016                           *
+   *                                                                          *
+   *   License: release under the terms of Affero-GPL                         *
+   *   https://www.gnu.org/licenses/agpl-3.0.txt                              *
+   ****************************************************************************
+-->
+  <head>
+    <title>Online GATB-Compiler</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <!-- Load Bootstrap CSS -->
+    <link 
+          rel="stylesheet" 
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Load GATB-Compiler CSS -->
+    <link 
+          rel="stylesheet" 
+          href="css/gatb-compiler.css">
+
+    <!-- Load JQuery -->
+    <script
+          src="https://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous"></script>
+    <!-- Load Bootsrap -->
+    <script 
+          src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Load ACE -->
+    <script 
+          src="ace-min-noconflict/ace.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+    <script
+          src="ace-min-noconflict/ext-statusbar.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+    <!-- Load GATB Tutorial globals definitions -->
+    <script 
+          src="js/globals.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+    <!-- Load Allgo connector -->
+    <script 
+          src="js/allgo_connector.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+    <!-- Load GATB Tutorial Code Snippets handler -->
+    <script 
+          src="js/code_snippets.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+    <!-- Load Ace stuffs -->
+    <script 
+          src="js/ace_addons.js" 
+          type="text/javascript" 
+          charset="utf-8"></script>
+  </head>
+
+  <body>
+    <div style="margin: auto; width: 80%;">
+    <div class="page-header">
+      <h2><span class="glyphicon glyphicon-education" aria-hidden="true"></span> GATB Tutorial <small><span id="lesson-title"></span></small></h2>
+      <span id="lesson-nav-bar"></span>
+    </div>
+    </div>
+
+    <!-- *
+         * We list the GATB concepts to learn in this lesson within the "classes-to-learn" element.
+         *
+      -->
+      <div style="margin: auto; width: 80%;">
+        <div class="alert alert-info" role="alert">
+          <span id="lesson-description"></span>
+        </div>
+        <div class="alert alert-warning" role="alert">
+          <span id="classes-to-learn"></span>
+        </div>
+      </div>
+
+    <!-- *
+         * We setup the Ace editor the "editor" element.
+         *
+      -->
+    <pre id="g-editor"></pre>
+    <div id="g-statusBar"></div>
+    <div id="g-run-console-dset" style="margin: auto; width: 80%;">
+    </div>
+      <script>
+      prepareAceEditor();    
+      </script>
+
+    <!-- *
+         * We setup the solution; only for snippet of type 'exercise'.
+         *
+      -->
+    <div style="margin: auto; width: 80%;" id="snippet-solution">
+    </div>
+      <script>
+      updateSnippetExerciseSolution(getUrlParameter("snippet"));
+      </script>
+    <!-- *
+         * We setup the "Compile and Run" button using a standard from.
+         *
+      -->
+    <script>
+      function sendAllgoRequest(){
+        var snippet_name = getUrlParameter("snippet");
+        var cmdline = getSnippetArgsLine(snippet_name);
+        var data_set = getSnippetDataSet(snippet_name);
+        return call_allgo(data_set, cmdline);
+      }
+    </script>
+    <div align="center">
+      <form 
+            onsubmit="return sendAllgoRequest();" 
+            action="" 
+            method="POST" 
+            enctype="multipart/form-data" 
+            accept-charset="utf-8" 
+            id="formUpload" >
+          <input 
+            id="compile-btn" 
+            type="submit" 
+            value="Compile &amp; Run!" 
+            class="btn btn-success">
+      </form>
+      <p id="job_monitor">-</p>
+    </div>
+
+    <!-- *
+         * We setup two consoles using a read-only Ace Editor. They display the results
+         * coming from the Allgo code compiling and job execution.
+         *
+      -->
+      <!-- Nav tabs -->
+      <div id="g-console" style="margin: auto; width: 80%;">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active">
+            <a href="#compile-status" role="tab" data-toggle="tab"><span id="g-comp-console-icon"></span> Compile status</a>
+          </li>
+          <li>
+            <a href="#running-status" role="tab" data-toggle="tab"><span id="g-run-console-icon"></span> Execution results</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="compile-status">
+            <pre id="g-comp-console"></pre>
+          </div>
+          <div class="tab-pane" id="running-status">
+            <pre id="g-run-console"></pre>
+          </div>
+        </div>
+      </div>
+        <script>
+          prepareAceCompConsole();
+          prepareAceRunConsole();
+          $("#g-console").hide();
+        </script>
+
+    <!-- *
+         * We setup the page footer.
+         *
+      -->
+    <div class="footer">
+      <p align="center">
+        <br /> <br /> 
+        <a href="http://gatb-core.gforge.inria.fr/training">GATB Tutorial Trail</a> <span id='tuto-release-tag'></span> &#x223c; 
+        Made with &#x2764; by Genscale Team &#x223c; INRIA/IRISA Rennes, France <br /> 
+        Powered by <a href="https://allgo.inria.fr/" target="_blank">A||GO</a> and 
+        <a href="https://ace.c9.io" target="_blank">Ace</a> /
+        <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a> 
+        <!-- beta dev. notice -->
+        <span id="nav-beta-notice"></span>
+        <!-- beta dev. notice --> 
+      </p>
+    </div>
+      <script>
+        $("#tuto-release-tag").html(GATB_ONLINE_TUTO_RELEASE);
+        checkBrowser();
+      </script>
+
+  </body>
+</html>
