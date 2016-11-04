@@ -85,7 +85,7 @@ var GATB_RELEASE="b1.2.2";
 var GATB_ONLINE_TUTO_RELEASE="1.0.0";
 
 // The URL that can be used to let the user access data set used in the lessons
-var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/gatb-compiler/data/";
+var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/training/data/";
 var DATA_MAPPER_FILE="data-file-mapper.txt";
 
 // Hash data strings
@@ -725,7 +725,7 @@ function checkBrowser(){
     notice+="<i>For now, this tutorial works only with recent release of <u>Firefox</u> and <u>Chrome</u> ";
     notice+="web browsers...<br/>";
   }
-  notice+="<a href='https://github.com/GATB/gatb-core/issues' target='_blank'>Contact us</a> if you have any comments regarding this tutorial.</i>";
+  notice+="<a href='https://github.com/GATB/gatb-core-tuto/issues' target='_blank'>Contact us</a> if you have any comments regarding this tutorial.</i>";
   notice+="</small>";
   $("#nav-beta-notice").html(notice);
 }
