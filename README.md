@@ -19,3 +19,17 @@ It contains two parts:
 * server: this is the code that goes on the GATB-Compiler Linux VM running on the [A||GO Cloud Computing Platform](https://allgo.inria.fr/).
 * client: this is the source code that makes the [GATB-Tutorial front-end](http://gatb-core.gforge.inria.fr/training).
 
+# Documentation
+
+A user documentation of the tutorial lessons is available [here](https://github.com/GATB/gatb-core-tuto/wiki/Using-the-Online-GATB-Compiler).
+
+There is also a [short article](https://github.com/GATB/gatb-core-tuto/wiki/How-does-work-the-online-GATB-compiler%3F) regarding the online GATB Compiler.
+
+#Third party libraries and licenses
+
+This project relies upon:
+
+* [JQuery](https://jquery.com/); license is [here](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
+* [Bootstrap](http://getbootstrap.com/); license is [here](https://github.com/twbs/bootstrap/blob/master/LICENSE)
+* [Ace](https://ace.c9.io); license is [here](https://github.com/ajaxorg/ace/blob/master/LICENSE)
+
