@@ -82,7 +82,7 @@ var WAIT_TIME_SOLUTION = 60;
 var GATB_RELEASE="b1.2.2";
 
 //we have a specific release numbering on this tutorial
-var GATB_ONLINE_TUTO_RELEASE="1.0.0";
+var GATB_ONLINE_TUTO_RELEASE="1.0.1";
 
 // The URL that can be used to let the user access data set used in the lessons
 var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/training/data/";
@@ -720,9 +720,9 @@ function checkBrowser(){
   
   var notice="<br /><br />";
   notice+="<small>";
-  if ((isFirefox || isChrome) == false){
+  if ((isFirefox || isChrome || isSafari) == false){
     notice+="<span style='color: red;' class='glyphicon glyphicon-warning-sign' aria-hidden='true'></span> ";
-    notice+="<i>For now, this tutorial works only with recent release of <u>Firefox</u> and <u>Chrome</u> ";
+    notice+="<i>For now, this tutorial works only with recent release of <u>Firefox</u>, <u>Safari</u> and <u>Chrome</u> ";
     notice+="web browsers...<br/>";
   }
   notice+="<a href='https://github.com/GATB/gatb-core-tuto/issues' target='_blank'>Contact us</a> if you have any comments regarding this tutorial.</i>";

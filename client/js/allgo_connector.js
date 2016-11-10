@@ -17,16 +17,6 @@ function call_allgo(dataSetName, cmdline) {
     // retrieve the c++ code snippet from the editor
     var editor = document.getElementById(HTML_ELEMENT_CODE_EDITOR).env.editor;
     var blob = new Blob([editor.getValue()], {type: "text/plain;charset=utf-8"});
-    //the following call to File constructor does not work on safari!
-    
-    try{
-      var vfile = new File([blob], DEFAULT_SNIPPET_CODE_NAME);
-    }
-    catch(err){
-      alert("Your browser does not support File upload to a remote server.");
-      console.log("File upload error: "+err);
-      return false;
-    }
     var tk = getDataHash();
     
     // prepare form data
@@ -52,8 +42,7 @@ function call_allgo(dataSetName, cmdline) {
     
     console.log("args: "+args);
     formData.append("job[param]", args);
-    //the source code file
-    formData.append("files[0]", vfile);
+    formData.append("files[0]", blob, DEFAULT_SNIPPET_CODE_NAME);
     
     $("#"+HTML_ELEMENT_COMPILE_BTN).attr('disabled','disabled');
     setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
