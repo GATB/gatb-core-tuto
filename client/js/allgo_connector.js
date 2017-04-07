@@ -71,9 +71,11 @@ function call_allgo(dataSetName, cmdline) {
         },
         error : function(d, s, ex){
           $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
-          console.log("job submission: error");
-          console.log(ex);
-          $( "#"+HTML_ELEMENT_JB_MON ).html( "<p style='color:red;font-weight: bold;'>Error:"+d.status+": "+d.statusText+". Job aborted. </p>");
+          console.log("!!!!!");
+          console.log("job submission: error. Status: "+s);
+          console.log("Exception: "+ex);
+          console.log("!!!!!");
+          $( "#"+HTML_ELEMENT_JB_MON ).html( "<p style='color:red;font-weight: bold;'>Error: "+d.status+": "+d.statusText+". Job aborted. </p>");
        }
       })
     return false;
