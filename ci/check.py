@@ -12,6 +12,8 @@
 #             <app_token>: Allgo API access token (Mandatory)
 #             <verbose>: y or n (default is n) 
 #
+#   Requirements: tested with Python 2.7; not compatible with Python 3.
+#
 #   Author: Patrick G. Durand, Inria - April 2017
 #
 #   License: release under the terms of Affero-GPL
