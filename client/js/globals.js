@@ -60,6 +60,9 @@ var EXPERT_TRAIL = "Expert";
 // Name of the tutorial for advanced
 var ADVANCED_TRAIL = "Advanced";
 
+// Name of the tutorial for training (GATB team courses)
+var TRAINING_TRAIL = "Training";
+
 // default snippet to show when URL parameter "snippet" is not provided
 //to gatb-compiler.html
 var DEFAULT_SNIPPET = "bank1";
@@ -67,7 +70,7 @@ var DEFAULT_SNIPPET = "bank1";
 // Some strings to format snippet pages
 var CLASSES_TO_LEARN_INTRO = "In this lesson, you will learn to use: ";
 var EXERCICE_HINT_INTRO = "Have a look at: ";
-var EXERCICE_HINT_WORK="Then, modify the code below to dump quality information after the sequence...";
+var EXERCICE_HINT_WORK="Then, modify the code below to try some code...";
 var NAV_BAR_INTRO = "You are here: ";
 var SNIPPET_TYPE_LESSON="lesson";
 var SNIPPET_TYPE_EXERCISE="exercise";
@@ -630,6 +633,110 @@ var ADVANCED_SNP_SNIPPETS = [
   }
 ];
 
+var TRAINING_BANK_SNIPPETS = [
+  {
+    "name":"T-bank1",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"Lesson 1",
+    "title" : "lesson 1: read a sequence file",
+    "description" : "Let's see how to read a sequence file (FastQ format) using GATB API.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io1.cpp",
+    "data_set" : "fastq_small",
+    "classes" : [
+      {
+        "name" : "Bank",
+        "doc" : "entrypoint to open a sequence file",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1impl_1_1Bank.html"
+      },
+      {
+        "name" : "IBank",
+        "doc" : "represent a bank, i.e. a set of sequences whatever the format",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1IBank.html"
+      },
+      {
+        "name" : "Sequence",
+        "doc" : "represent a sequence of nucleotides",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html"
+      }
+    ] 
+  },
+  {
+    "name":"T-ex_bank1",
+    "type":SNIPPET_TYPE_EXERCISE,
+    "nav":"exercise 1",
+    "title" : "exercise 1: get quality of reads",
+    "description" : "Try to get the quality data associated to reads in a FastQ file.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io1.cpp",
+    "data_set" : "fastq_small",
+    "solution":{
+         "code":"std::cout << seq.getQuality() << std::endl;",
+         "line":"22",
+      },
+    "classes" : [
+      {
+        "name" : "Sequence",
+        "doc" : "maybe there is a method of interest to getQuality() information.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html"
+      }
+    ] 
+  },
+  {
+    "name":"T-ex_bank2",
+    "type":SNIPPET_TYPE_EXERCISE,
+    "nav":"exercise 2",
+    "title" : "exercise 2: get bank size",
+    "description" : "Try to get bank size.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io2.cpp",
+    "data_set" : "fastq_small",
+    "solution":{
+         "code":' int64_t   nbseq = inbank ->estimateNbItems ();\n u_int64_t totalsize =   inbank ->estimateSequencesSize ();\n std::cout  << "# sequences: " << nbseq     << std::endl;\n std::cout  << "# letters: "   << totalsize << std::endl;',
+         "line":"14",
+      },
+    "classes" : [
+      {
+        "name" : "IBank",
+        "doc" : "can you see some estimateXXX() methods?",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1IBank.html"
+      }
+    ] 
+  },
+  {
+    "name":"T-bank2",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"lesson 2",
+    "title" : "lesson 2: write/convert a sequence file",
+    "description" : "Let's see how to read a sequence file (FastQ format), then write a new sequence file (FastA format).",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io3.cpp",
+    "data_set" : "fastq_small",
+    "classes" : [
+      {
+        "name" : "BankFasta",
+        "doc" : "to read Fasta files in compressed or plain text format.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1impl_1_1BankFasta.html#details"
+      }
+    ] 
+  }
+];
+
+var TRAINING_KMER_SNIPPETS = [
+  {
+    "name":"T-kmer1",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"lesson 1",
+    "title" : "lesson 1: Iterating kmers from a sequence",
+    "description" : "Let's see how to iterate over all k-mers contained in a Fasta file.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/kmer1.cpp",
+    "data_set" : "fasta_small",
+    "classes" : [
+      {
+        "name" : "ModelDirect",
+        "doc" : "a Model that handles 'direct' kmers, ie sequences of nucleotides.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1kmer_1_1impl_1_1Kmer_1_1ModelDirect.html#details"
+      }
+    ] 
+  }
+];
+
 /**
  * Contains all available snippets
  */
@@ -693,8 +800,24 @@ var ALL_SNIPPETS = [
     "trail_path":ADVANCED_TRAIL, 
     "snippets": ADVANCED_SNP_SNIPPETS,
     "more":"https://github.com/GATB"
+  },
+  {
+    "name": "Bank",
+    "nav":"bank",
+    "description":"Bank APIs provide classes and methods to read and write sequence files. Supported formats are Fasta and Fastq, plain text or compressed (gzip) files. In the following lessons, discover how easy it is to handle sequence files using GATB-Core 'Bank' API.",
+    "trail_path":TRAINING_TRAIL, 
+    "snippets": TRAINING_BANK_SNIPPETS
+  },
+  {
+    "name": "k-mer",
+    "nav":"kmer",
+    "description":"k-mer APIs provide classes and methods to handle the basics of De Bruijn graphs: k-mers, i.e. short sequences of 'k' nucleotides. GATB-Core provides a convenient API to deal with k-mers, as illustrated in these lessons.",
+    "trail_path":TRAINING_TRAIL, 
+    "snippets": TRAINING_KMER_SNIPPETS
   }
+
   ];
+
 
 /*
  * Added since this tutorial only works on Firefox and Chrome, for now.

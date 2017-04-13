@@ -193,7 +193,7 @@ function updateNavBar(snippet_name){
 /**
  * Utility method to prepare the trails navigation bar.
  * This function actually updates "trail-nav-bar" in main HTML page.
- 
+ *
  * @param trailName a trail name. 
  */
 function updateTrailNavBar(trailName){
@@ -201,6 +201,15 @@ function updateTrailNavBar(trailName){
   var tokens="";
   var out="<small>";
   
+  // Special case: Training trail is the GATB Team onsite course. So, 
+  // during such a session, we do not allow an easy access to other 
+  // trails, so that trainees focus on the course!
+  if (trailName.indexOf(TRAINING_TRAIL)>=0){
+    out+="</small>";
+    $( "#trail-nav-bar" ).html(out);
+    return;
+  }
+  // We display Trails Navigation Bar for all other trail types
   out+=TRAIL_NAV_BAR_INTRO;
   for(i = 0; i < ALL_SNIPPETS.length; i++) {
     
@@ -438,6 +447,7 @@ function updateDataSetUrl(snippet_name){
   var dFile=undefined;
   var dMapperUrl=DATA_SET_LOADER_URL+DATA_MAPPER_FILE;
   var dataSetName=getSnippetDataSet(snippet_name);
+  var codeUrl=getSnippetUrl(snippet_name);
   
   $.get({
     url: dMapperUrl,
@@ -457,9 +467,12 @@ function updateDataSetUrl(snippet_name){
             dFile=fparts[fparts.length-1];
           }
           // having file name, we can setup the URL
-          var out="<small>The above code will be executed using&nbsp;";
+          var out="<small>The&nbsp;";
           out+="<span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span>&nbsp;";
-          out+="<a href='"+DATA_SET_LOADER_URL+dFile+"' target='_blank'>this sample data file</a>&nbsp;";
+          out+="<a href='"+codeUrl+"' target='_blank'>";
+          out+="above code</a> will be executed using&nbsp;";
+          out+="<span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span>&nbsp;";
+          out+="<a href='"+DATA_SET_LOADER_URL+dFile+"' target='_blank'> this sample data file</a>&nbsp;";
           out+="(it is passed to the program as the first argument)</small><p>&nbsp;</p>";
           $("#g-run-console-dset").html(out);
         }
