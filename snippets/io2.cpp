@@ -12,9 +12,6 @@ int main (int argc, char* argv[]){
   IBank * inbank = Bank::open(argv[1]);
 
   /* we get bank information */
-  int64_t   nbseq = inbank ->estimateNbItems ();
-  u_int64_t totalsize =   inbank ->estimateSequencesSize ();
-  std::cout  << "# sequences: " << nbseq     << std::endl;
-  std::cout  << "# letters: "   << totalsize << std::endl;
+  
 
 }
