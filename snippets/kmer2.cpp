@@ -20,14 +20,10 @@ int main (int argc, char* argv[]){
 
   /* we open the sequence file for which we want to get kmers */
   IBank * inbank = Bank::open(argv[1]);
-
   /* let us iterate over all sequences from that file */
   Iterator<Sequence>* it = inbank->iterator();
-
   for (it->first(); !it->isDone(); it->next()){
     Sequence& seq = it->item();
-
-    /* print the sequence */
     std::cout << seq.toString() << std::endl;
 
     /* wet provide our kmer model ietrator with the sequence 
@@ -37,10 +33,8 @@ int main (int argc, char* argv[]){
 
     /* we iterate over all kmers contained in our sequence */
     for (itKmer.first(); !itKmer.isDone(); itKmer.next()){
-      /* print the kmer */
-      cout << model.toString (itKmer->value()) << endl;
-      
-       /*** ADD YOUR CODE HERE ***/
+       
+      /*** ADD YOUR CODE HERE ***/
 
     }
   }
