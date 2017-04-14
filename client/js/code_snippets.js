@@ -316,7 +316,7 @@ function updateTrailConceptsCollapsePanels(trailName, catToShow){
         out+="<div id='"+key+"' class='panel-collapse collapse'>";
       }
       out+="<div class='panel-body'>";
-      out+="<table border='0'><tr><td>";
+      out+="<table border='0'><tr><td style='vertical-align:top'>";
       out+="<span class='glyphicon glyphicon-hand-right' aria-hidden='true'></span>&nbsp;&nbsp;";
       out+="</td><td>&nbsp;&nbsp;</td><td>";
       out+=ALL_SNIPPETS[i].description;

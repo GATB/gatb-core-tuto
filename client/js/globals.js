@@ -85,7 +85,7 @@ var WAIT_TIME_SOLUTION = 60;
 var GATB_RELEASE="b1.2.2";
 
 //we have a specific release numbering on this tutorial
-var GATB_ONLINE_TUTO_RELEASE="1.0.1";
+var GATB_ONLINE_TUTO_RELEASE="1.0.2";
 
 // The URL that can be used to let the user access data set used in the lessons
 var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/training/data/";
@@ -646,17 +646,17 @@ var TRAINING_BANK_SNIPPETS = [
       {
         "name" : "Bank",
         "doc" : "entrypoint to open a sequence file",
-        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1impl_1_1Bank.html"
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1impl_1_1Bank.html#details"
       },
       {
         "name" : "IBank",
         "doc" : "represent a bank, i.e. a set of sequences whatever the format",
-        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1IBank.html"
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1IBank.html#details"
       },
       {
         "name" : "Sequence",
         "doc" : "represent a sequence of nucleotides",
-        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html"
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html#details"
       }
     ] 
   },
@@ -666,7 +666,7 @@ var TRAINING_BANK_SNIPPETS = [
     "nav":"exercise 1",
     "title" : "exercise 1: get quality of reads",
     "description" : "Try to get the quality data associated to reads in a FastQ file.",
-    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io1.cpp",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io2.cpp",
     "data_set" : "fastq_small",
     "solution":{
          "code":"std::cout << seq.getQuality() << std::endl;",
@@ -676,7 +676,7 @@ var TRAINING_BANK_SNIPPETS = [
       {
         "name" : "Sequence",
         "doc" : "maybe there is a method of interest to getQuality() information.",
-        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html"
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html#details"
       }
     ] 
   },
@@ -686,7 +686,7 @@ var TRAINING_BANK_SNIPPETS = [
     "nav":"exercise 2",
     "title" : "exercise 2: get bank size",
     "description" : "Try to get bank size.",
-    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io2.cpp",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io3.cpp",
     "data_set" : "fastq_small",
     "solution":{
          "code":' int64_t   nbseq = inbank ->estimateNbItems ();\n u_int64_t totalsize =   inbank ->estimateSequencesSize ();\n std::cout  << "# sequences: " << nbseq     << std::endl;\n std::cout  << "# letters: "   << totalsize << std::endl;',
@@ -696,7 +696,7 @@ var TRAINING_BANK_SNIPPETS = [
       {
         "name" : "IBank",
         "doc" : "can you see some estimateXXX() methods?",
-        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1IBank.html"
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1IBank.html#details"
       }
     ] 
   },
@@ -706,7 +706,7 @@ var TRAINING_BANK_SNIPPETS = [
     "nav":"lesson 2",
     "title" : "lesson 2: write/convert a sequence file",
     "description" : "Let's see how to read a sequence file (FastQ format), then write a new sequence file (FastA format).",
-    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io3.cpp",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io4.cpp",
     "data_set" : "fastq_small",
     "classes" : [
       {
@@ -723,17 +723,55 @@ var TRAINING_KMER_SNIPPETS = [
     "name":"T-kmer1",
     "type":SNIPPET_TYPE_LESSON,
     "nav":"lesson 1",
-    "title" : "lesson 1: Iterating kmers from a sequence",
+    "title" : "lesson 1: Iterating kmers from sequences",
     "description" : "Let's see how to iterate over all k-mers contained in a Fasta file.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/kmer1.cpp",
     "data_set" : "fasta_small",
     "classes" : [
       {
         "name" : "ModelDirect",
-        "doc" : "a Model that handles 'direct' kmers, ie sequences of nucleotides.",
+        "doc" : "a Model that handles 'direct' kmers.",
         "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1kmer_1_1impl_1_1Kmer_1_1ModelDirect.html#details"
       }
     ] 
+  },
+  {
+    "name":"T-kmer2",
+    "type":SNIPPET_TYPE_EXERCISE,
+    "nav":"exercise 1",
+    "title" : "exercise 1: Iterating kmers using ModelCanonical",
+    "description" : "In this lesson we will use ModelCanonical instead of ModelDirect to get kmers from sequences.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/kmer2.cpp",
+    "data_set" : "fasta_small",
+    "classes_description":"<B>The problem with ModelDirect is:</B> "+
+      "reads can be on forward or reverse strand, we do not know. So, each kmer may appear twice.<br/><br/>"+
+      "A widespread solution consists in keeping only the forward or the reverse complement of a kmer.<br/>"+
+      "By convention, the minimum (in lexical order) between a kmer and its reverse complement "+
+      "is known as the <i>Canonical kmer</i>.<br/><br/>"+
+      "Using GATB-Core API, canonical kmers are accessible using instances of class "+
+      "<a href='http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1kmer_1_1impl_1_1Kmer_1_1ModelCanonical.html#details' target='_blank'>"+
+      "ModelCanonical</a>.<br/><br/>"+
+      "<B>Exercice.</B> Modify the code below as follows:"+
+      "<ul>"+
+      "<li>use ModelCanonical instead of ModelDirect (~line 18)</li>"+
+      "<li>have a look at <a href='http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1kmer_1_1impl_1_1Kmer_1_1KmerCanonical.html' target='_blank'>KmerCanonical</a> API...<br>"+
+      "(this will be the type of kmers returned by kmer iterator)</li>"+
+      "<li>... and display kmer as well as its forward and reverse complement (~line 37)</li>"+
+      "</ul>"+
+      "</div>",
+    "solution":{
+         "code":'std::cout << "-------------------- CANONICAL --------------------" << std::endl;\n'+
+            'std::cout << "kmer  value is: "    << itKmer->value()                    << std::endl;\n'+
+            'std::cout << "kmer string is: "    << model.toString(itKmer->value())    << std::endl;\n'+
+            'std::cout << "forward value  is: " << itKmer->forward()                  << std::endl;\n'+
+            'std::cout << "forward string is: " << model.toString(itKmer->forward())  << std::endl;\n'+
+            'std::cout << "revcomp value  is: " << itKmer->revcomp()                  << std::endl;\n'+
+            'std::cout << "revcomp string is: " << model.toString(itKmer->revcomp())  << std::endl;\n'+
+            'std::cout << "used strand is   : " << toString(itKmer->strand())         << std::endl;\n'+
+            '// we only display first kmer for each sequence\n'+
+            'break;\n',
+         "line":"37",
+      },
   }
 ];
 
@@ -804,14 +842,14 @@ var ALL_SNIPPETS = [
   {
     "name": "Bank",
     "nav":"bank",
-    "description":"Bank APIs provide classes and methods to read and write sequence files. Supported formats are Fasta and Fastq, plain text or compressed (gzip) files. In the following lessons, discover how easy it is to handle sequence files using GATB-Core 'Bank' API.",
+    "description":"Bank APIs provide classes and methods to read and write sequence files.<br/>Supported formats are Fasta and Fastq, plain text or compressed (gzip) files.<br/>In the following lessons, discover how easy it is to handle sequence files using GATB-Core 'Bank' API.",
     "trail_path":TRAINING_TRAIL, 
     "snippets": TRAINING_BANK_SNIPPETS
   },
   {
     "name": "k-mer",
     "nav":"kmer",
-    "description":"k-mer APIs provide classes and methods to handle the basics of De Bruijn graphs: k-mers, i.e. short sequences of 'k' nucleotides. GATB-Core provides a convenient API to deal with k-mers, as illustrated in these lessons.",
+    "description":"k-mer APIs provide classes and methods to handle the basics of De Bruijn graphs: k-mers, i.e. short sequences of 'k' nucleotides.<br/>GATB-Core provides a convenient API to deal with k-mers, as illustrated in these lessons.",
     "trail_path":TRAINING_TRAIL, 
     "snippets": TRAINING_KMER_SNIPPETS
   }
