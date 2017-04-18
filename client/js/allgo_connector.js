@@ -102,7 +102,6 @@ function getAllgoResponseLoop(data, token, counter) {
   setTimeout(function() {
     //connect to A||GO abd get its status (A JSON object)
     result = getAllgoResponse(data,token);
-    console.log("AllGO answer: "+result);
     console.log("Attempt #"+counter);
     
     if (result.status !== undefined) {
@@ -196,7 +195,7 @@ function getAllgoResponse(data, token) {
       'Accept': 'application/json',
     },
     success: function(d, s, ex) {
-      console.log('A||GO request: success');
+      console.log('A||GO request: ok');
       console.log(d);
       console.log(s);
       console.log(ex);
