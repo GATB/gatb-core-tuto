@@ -775,6 +775,30 @@ var TRAINING_KMER_SNIPPETS = [
   }
 ];
 
+var TRAINING_GRAPH_SNIPPETS = [
+  {
+    "name":"T-graph1",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"lesson 1",
+    "title" : "lesson 1: create a De Bruijn graph from a sequence file, then iterate over the nodes.",
+    "description" : "Let's see how to iterate over all nodes contained in a De Bruijn graph.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph1.cpp",
+    "data_set" : "fasta_small",
+    "classes" : [
+      {
+        "name" : "Node",
+        "doc" : "to represent a node in a De Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1debruijn_1_1impl_1_1Node__t.html"
+      }
+      ,
+      {
+        "name" : "Graph",
+        "doc" : "represent a de Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1debruijn_1_1impl_1_1GraphTemplate.html#details"
+      }
+    ]
+  },
+];
 /**
  * Contains all available snippets
  */
@@ -852,9 +876,15 @@ var ALL_SNIPPETS = [
     "description":"k-mer APIs provide classes and methods to handle the basics of De Bruijn graphs: k-mers, i.e. short sequences of 'k' nucleotides.<br/>GATB-Core provides a convenient API to deal with k-mers, as illustrated in these lessons.",
     "trail_path":TRAINING_TRAIL, 
     "snippets": TRAINING_KMER_SNIPPETS
+  },
+  {
+    "name": "graph",
+    "nav":"graph",
+    "description":"Graph API provides classes and methods to handle De Bruijn graphs.",
+    "trail_path":TRAINING_TRAIL, 
+    "snippets": TRAINING_GRAPH_SNIPPETS
   }
-
-  ];
+];
 
 
 /*
