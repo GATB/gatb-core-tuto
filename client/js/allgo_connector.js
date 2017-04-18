@@ -96,13 +96,19 @@ function call_allgo(dataSetName, cmdline) {
  */
 function getAllgoResponseLoop(data, token) {
   var result;
+  var counter=0;
   
   setTimeout(function() {
     //connect to A||GO abd get its status (A JSON object)
     result = getAllgoResponse(data,token);
     console.log(result);
-    
+    counter++.
     if (result.status !== undefined) {
+      if (counter>5){
+      $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:red;font-weight: bold;'>Job timed out.</p>");
+        $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
+        return;
+      }
       //result not yet ready
       getAllgoResponseLoop(data,token);
     }
