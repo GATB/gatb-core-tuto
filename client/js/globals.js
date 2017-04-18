@@ -77,6 +77,8 @@ var SNIPPET_TYPE_EXERCISE="exercise";
 
 // time (in seconds) to wait before showing a solution
 var WAIT_TIME_SOLUTION = 60;
+// #times to get a valid answer from Allgo. After that: job timed out.
+var RETRY_CONNECT_ALLGO=10;
 
 // the release of GATB-Core used for the Tutorial.
 // Be very, very careful when changing that value.

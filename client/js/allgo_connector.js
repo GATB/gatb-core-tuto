@@ -102,11 +102,11 @@ function getAllgoResponseLoop(data, token, counter) {
   setTimeout(function() {
     //connect to A||GO abd get its status (A JSON object)
     result = getAllgoResponse(data,token);
-    console.log(result);
-    console.log(counter);
+    console.log("AllGO answer: "+result);
+    console.log("Attempt #"+counter);
     
     if (result.status !== undefined) {
-      if (counter>5){
+      if (counter>RETRY_CONNECT_ALLGO){
       $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:red;font-weight: bold;'>Job timed out.</p>");
         $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
         return;
