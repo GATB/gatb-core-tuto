@@ -1,11 +1,8 @@
 /* we include GATB-Core API */
 #include <gatb/gatb_core.hpp>
 
-/* we setup the kmer model */
-static const size_t span =  32;
-int kmerSize = 31;
-
 int main (int argc, char* argv[]){
+
   /* we expect a sequence file name on the cmd-line */
   if(argc != 2){
     printf("%s filename\n",argv[0]);
@@ -13,10 +10,12 @@ int main (int argc, char* argv[]){
   }
 
   try {
-    /* we load the graph from the given graph file */
-    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d", 5);
+    /* we create the graph from the a sample Fastq file */
+    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d", 1);
+
     /* we get an iterator for all nodes of the graph */
-    GraphIterator<Node> it = graph.iterator ();
+    Graph::Iterator<Node> it = graph.iterator ();
+
     /* we loop over each node */
     for (it.first(); !it.isDone(); it.next()) {
       /* The currently iterated node is available with it.item()
