@@ -47,7 +47,7 @@ function call_allgo(dataSetName, cmdline) {
     $("#"+HTML_ELEMENT_COMPILE_BTN).attr('disabled','disabled');
     setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
     setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
-    $("#"+HTML_ELEMENT_CONSOLE).hide();
+    //$("#"+HTML_ELEMENT_CONSOLE).hide();
     
     //send GET to A||GO
     console.log("Sending request to Allgo...");
@@ -113,7 +113,7 @@ function getAllgoResponseLoop(data, token) {
         processResultFile(HTML_ELEMENT_RUN_CONSOLE, "output.log", result[data.id]['output.log']);
         $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:green;font-weight: bold;'>Job done.</p>");
         $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
-        $("#"+HTML_ELEMENT_CONSOLE).show();
+        //$("#"+HTML_ELEMENT_CONSOLE).show();
       }
     }
   }, 2000 /*Time to wait between successive Allgo call: 2 seconds */);

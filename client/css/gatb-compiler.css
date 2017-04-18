@@ -17,7 +17,6 @@ p {
   border: 1px solid lightgray;
   margin: auto;
   height: 400px;
-  width: 80%;
 }
 
 #g-statusBar {
@@ -32,12 +31,12 @@ p {
 #g-comp-console {
   border: 1px solid lightgray;
   margin: auto;
-  height: 100px;
+  height: 400px;
 }
 
 #g-run-console {
   border: 1px solid lightgray;
   margin: auto;
-  height: 100px;
+  height: 400px;
 }
 
