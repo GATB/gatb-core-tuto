@@ -67,7 +67,7 @@ function call_allgo(dataSetName, cmdline) {
           $( "#"+HTML_ELEMENT_JB_MON ).html( "<p style='color:green;font-weight: bold;'>Job running...</p>" );
           setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
           setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
-          getAllgoResponseLoop(d, tk);
+          getAllgoResponseLoop(d, tk, 0);
         },
         error : function(d, s, ex){
           $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
@@ -94,15 +94,17 @@ function call_allgo(dataSetName, cmdline) {
  * @param token authentication  token to access the A||GO/GATB-Compiler
  * using A||GO API.
  */
-function getAllgoResponseLoop(data, token) {
+function getAllgoResponseLoop(data, token, counter) {
   var result;
-  var counter=0;
+  
+  counter++;
   
   setTimeout(function() {
     //connect to A||GO abd get its status (A JSON object)
     result = getAllgoResponse(data,token);
     console.log(result);
-    counter++.
+    console.log(counter);
+    
     if (result.status !== undefined) {
       if (counter>5){
       $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:red;font-weight: bold;'>Job timed out.</p>");
@@ -110,7 +112,7 @@ function getAllgoResponseLoop(data, token) {
         return;
       }
       //result not yet ready
-      getAllgoResponseLoop(data,token);
+      getAllgoResponseLoop(data,token,counter);
     }
     else {
       //job ready, check for result
