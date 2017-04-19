@@ -687,7 +687,7 @@ var TRAINING_BANK_SNIPPETS = [
     "type":SNIPPET_TYPE_EXERCISE,
     "nav":"exercise 2",
     "title" : "exercise 2: get bank size",
-    "description" : "Try to get bank size.",
+    "description" : "Try to get bank size, i.e. the number of sequences and total length of all sequences present in the file.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io3.cpp",
     "data_set" : "fastq_small",
     "solution":{
