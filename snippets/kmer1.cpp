@@ -30,8 +30,10 @@ int main (int argc, char* argv[]){
     /* print the sequence */
     std::cout << seq.toString() << std::endl;
 
-    /* wet provide our kmer model ietrator with the sequence 
-     * from which we want to extract kmers.
+    /* so, we have a kmer iterator (itKmer)
+     * but it needs to know which sequences to iterate kmers from 
+     * the following line sets the data of the kmer iterator
+     * to be the data of the sequences iterator
      */
     itKmer.setData ((*it)->getData());
 
