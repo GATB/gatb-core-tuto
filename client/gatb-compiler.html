@@ -94,12 +94,39 @@
          * We setup the Ace editor the "editor" element.
          *
       -->
-    <pre id="g-editor"></pre>
-    <div id="g-statusBar"></div>
-    <div id="g-run-console-dset" style="margin: auto; width: 80%;">
-    </div>
+      <!-- Nav tabs -->
+      <div id="g-console" style="margin: auto; width: 80%;">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active">
+            <a href="#source-code" role="tab" data-toggle="tab"><span id="g-source-code-icon"></span> Source code</a>
+          </li>
+          <li>
+            <a href="#compile-status" role="tab" data-toggle="tab"><span id="g-comp-console-icon"></span> Compile status</a>
+          </li>
+          <li>
+            <a href="#running-status" role="tab" data-toggle="tab"><span id="g-run-console-icon"></span> Execution results</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="source-code">
+            <pre id="g-editor"></pre>
+            <div id="g-statusBar"></div>
+            <div id="g-run-console-dset" style="margin: auto;"></div>
+          </div>
+          <div class="tab-pane" id="compile-status">
+            <pre id="g-comp-console"></pre>
+          </div>
+          <div class="tab-pane" id="running-status">
+            <pre id="g-run-console"></pre>
+          </div>
+        </div>
+      </div>
       <script>
       prepareAceEditor();    
+      prepareAceCompConsole();
+      prepareAceRunConsole();
       </script>
 
     <!-- *
@@ -145,33 +172,7 @@
          * coming from the Allgo code compiling and job execution.
          *
       -->
-      <!-- Nav tabs -->
-      <div id="g-console" style="margin: auto; width: 80%;">
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="active">
-            <a href="#compile-status" role="tab" data-toggle="tab"><span id="g-comp-console-icon"></span> Compile status</a>
-          </li>
-          <li>
-            <a href="#running-status" role="tab" data-toggle="tab"><span id="g-run-console-icon"></span> Execution results</a>
-          </li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div class="tab-pane active" id="compile-status">
-            <pre id="g-comp-console"></pre>
-          </div>
-          <div class="tab-pane" id="running-status">
-            <pre id="g-run-console"></pre>
-          </div>
-        </div>
-      </div>
-        <script>
-          prepareAceCompConsole();
-          prepareAceRunConsole();
-          $("#g-console").hide();
-        </script>
-
+ 
     <!-- *
          * We setup the page footer.
          *
@@ -179,7 +180,7 @@
     <div class="footer">
       <p align="center">
         <br /> <br /> 
-        <a href="http://gatb-core.gforge.inria.fr/training">GATB Tutorial Trail</a> <span id='tuto-release-tag'></span> &#x223c; 
+        GATB Tutorial Trail <span id='tuto-release-tag'></span> &#x223c; 
         Made with &#x2764; by Genscale Team &#x223c; INRIA/IRISA Rennes, France <br /> 
         Powered by <a href="https://allgo.inria.fr/" target="_blank">A||GO</a> and 
         <a href="https://ace.c9.io" target="_blank">Ace</a> /
