@@ -16,7 +16,7 @@ int main (int argc, char* argv[]){
     /* we get an arbitrary node in the graph */
     Graph::Iterator<Node> it = graph.iterator ();
     it.first();
-    Node = start_node = it.item();
+    Node start_node = it.item();
 
     int path_len = 0;
     while (/* some condition */)
