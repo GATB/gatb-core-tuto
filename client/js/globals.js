@@ -28,6 +28,7 @@ var HTML_ELEMENT_STATUS_BAR = "g-statusBar";
 // the console
 var HTML_ELEMENT_CONSOLE = "g-console";
 // the console, displays compiling status
+var HTML_ELEMENT_COMP_CONSOLE_TAB = "compile-status";
 var HTML_ELEMENT_COMP_CONSOLE = "g-comp-console";
 // the console, displays execution status
 var HTML_ELEMENT_RUN_CONSOLE = "g-run-console";

@@ -120,7 +120,7 @@ function getAllgoResponseLoop(data, token, counter) {
         processResultFile(HTML_ELEMENT_RUN_CONSOLE, "output.log", result[data.id]['output.log']);
         $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:green;font-weight: bold;'>Job done.</p>");
         $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
-        //$("#"+HTML_ELEMENT_CONSOLE).show();
+        $('[href="#'+HTML_ELEMENT_COMP_CONSOLE_TAB+'"]').tab('show');
       }
     }
   }, 2000 /*Time to wait between successive Allgo call: 2 seconds */);

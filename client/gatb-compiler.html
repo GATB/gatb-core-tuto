@@ -91,7 +91,10 @@
       </div>
 
     <!-- *
-         * We setup the Ace editor the "editor" element.
+         * We setup the Ace editor to display source code.
+         *
+         * We also setup two consoles using a read-only Ace Editor. They display 
+         * the results coming from the Allgo code compiling and job execution.
          *
       -->
       <!-- Nav tabs -->
@@ -111,9 +114,37 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane active" id="source-code">
-            <pre id="g-editor"></pre>
+            <div id="g-editor"></div>
             <div id="g-statusBar"></div>
             <div id="g-run-console-dset" style="margin: auto;"></div>
+			<!-- *
+				 * We setup the "Compile and Run" button using a standard from.
+				 *
+			  -->
+			<script>
+			  function sendAllgoRequest(){
+				var snippet_name = getUrlParameter("snippet");
+				var cmdline = getSnippetArgsLine(snippet_name);
+				var data_set = getSnippetDataSet(snippet_name);
+				return call_allgo(data_set, cmdline);
+			  }
+			</script>
+			<div align="center">
+			  <form 
+					onsubmit="return sendAllgoRequest();" 
+					action="" 
+					method="POST" 
+					enctype="multipart/form-data" 
+					accept-charset="utf-8" 
+					id="formUpload" >
+				  <input 
+					id="compile-btn" 
+					type="submit" 
+					value="Compile &amp; Run!" 
+					class="btn btn-success">
+			  </form>
+			  <p id="job_monitor">-</p>
+			</div>
           </div>
           <div class="tab-pane" id="compile-status">
             <pre id="g-comp-console"></pre>
@@ -133,45 +164,13 @@
          * We setup the solution; only for snippet of type 'exercise'.
          *
       -->
+    <div>&nbsp;</div>
     <div style="margin: auto; width: 80%;" id="snippet-solution">
     </div>
       <script>
       updateSnippetExerciseSolution(getUrlParameter("snippet"));
       </script>
-    <!-- *
-         * We setup the "Compile and Run" button using a standard from.
-         *
-      -->
-    <script>
-      function sendAllgoRequest(){
-        var snippet_name = getUrlParameter("snippet");
-        var cmdline = getSnippetArgsLine(snippet_name);
-        var data_set = getSnippetDataSet(snippet_name);
-        return call_allgo(data_set, cmdline);
-      }
-    </script>
-    <div align="center">
-      <form 
-            onsubmit="return sendAllgoRequest();" 
-            action="" 
-            method="POST" 
-            enctype="multipart/form-data" 
-            accept-charset="utf-8" 
-            id="formUpload" >
-          <input 
-            id="compile-btn" 
-            type="submit" 
-            value="Compile &amp; Run!" 
-            class="btn btn-success">
-      </form>
-      <p id="job_monitor">-</p>
-    </div>
 
-    <!-- *
-         * We setup two consoles using a read-only Ace Editor. They display the results
-         * coming from the Allgo code compiling and job execution.
-         *
-      -->
  
     <!-- *
          * We setup the page footer.
