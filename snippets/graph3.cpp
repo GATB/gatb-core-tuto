@@ -19,7 +19,7 @@ int main (int argc, char* argv[]){
     Node start_node = it.item();
 
     int path_len = 0;
-    while (/* some condition */)
+    while ( 0 /* replace by some condition */)
     {
         /* ADD CODE HERE */
     }
