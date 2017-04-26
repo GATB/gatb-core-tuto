@@ -808,7 +808,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "title" : "exercice 1: compute the in- and out-degrees of all nodes.",
     "description" : "Iterate all the nodes of the graph, and compute their number of in-neighors and out-neighbors (those numbers are also known respectively as in-degree and out-degree). Then, print the mean in-degree and mean out-degree across the entire graph.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph2.cpp",
-    "data_set" : "fasta_small",
+    "data_set" : "fasta_medium",
     "classes" : [
       {
         "name" : "Node",
@@ -830,7 +830,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "title" : "exercice 2: traverse the graph from a given node.",
     "description" : "Given a node in the de Bruijn graph, keep traversing the path that starts at that node and follows its out-neighbor, as long as there is a single out-neighbor",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph3.cpp",
-    "data_set" : "fasta_small",
+    "data_set" : "fasta_medium",
     "classes" : [
       {
         "name" : "Node",
@@ -845,6 +845,29 @@ var TRAINING_GRAPH_SNIPPETS = [
       }
     ]
   },
+  {
+    "name":"T-graph4",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"exercice 3",
+    "title" : "exercice 3: traverse many paths in depth-first order",
+    "description" : "Given a node in the de Bruijn graph, keep traversing the path that starts at that node and keep following the out-neighbors, in a depth-first search fashion. You may use the simplePath() function to traverse a simple path in a single call.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph4.cpp",
+    "data_set" : "fasta_medium",
+    "classes" : [
+      {
+        "name" : "Node",
+        "doc" : "to represent a node in a De Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1debruijn_1_1impl_1_1Node__t.html"
+      }
+      ,
+      {
+        "name" : "Graph",
+        "doc" : "represent a de Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1debruijn_1_1impl_1_1GraphTemplate.html#details"
+      }
+    ]
+  },
+
 
 ];
 /**

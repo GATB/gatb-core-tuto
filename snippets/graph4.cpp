@@ -1,5 +1,6 @@
 /* we include GATB-Core API */
 #include <gatb/gatb_core.hpp>
+#include <stack>
 
 int main (int argc, char* argv[]){
 
@@ -18,13 +19,16 @@ int main (int argc, char* argv[]){
     it.first();
     Node start_node = it.item();
 
-    int path_len = 0;
-    while ( 0 /* replace by some condition */)
+    uint32_t nb_traversed_simple_paths = 0;
+
+    std::stack<Node> to_traverse;
+    to_traverse.push(start_node)
     {
         /* ADD CODE HERE */
     }
+   
+    std::cout << "traversed " << nb_traversed_simple_paths << " simple paths" << std::endl;
 
-    std::cout << "length of the path starting from start_node, and following nodes with single out-neighbors: " << path_len << std::endl;
 
   }
   catch (Exception& e) {

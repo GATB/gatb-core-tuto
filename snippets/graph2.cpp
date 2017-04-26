@@ -11,7 +11,7 @@ int main (int argc, char* argv[]){
 
   try {
     /* we create the graph from the a sample Fastq file */
-    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d -verbose 0", 1);
+    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d -verbose 0", 4);
 
     /* we get an iterator for all nodes of the graph */
     Graph::Iterator<Node> it = graph.iterator ();
