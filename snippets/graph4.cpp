@@ -26,6 +26,7 @@ int main (int argc, char* argv[]){
 
     while (to_traverse.size() > 0)
     {
+        to_traverse.pop();
         /* ADD CODE HERE */
     }
    
