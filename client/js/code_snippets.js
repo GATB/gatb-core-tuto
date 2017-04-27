@@ -458,6 +458,7 @@ function updateDataSetUrl(snippet_name){
       // we locate lines having format: dataSetName=dataSetPath
       // e.g. fasta_small=/home/allgo/data/celegans_reads.fasta
       for(var i = 0;i<parts.length;i++){
+        if (parts[i][0] == '#') continue; 
         if (parts[i].indexOf(dataSetName)!=-1){
           dFile=parts[i].split("=")[1];
           // as stated above, right parts[i] of "=" is a file path
