@@ -26,7 +26,7 @@ int main (int argc, char* argv[]){
     }
 
     /* ADD CODE HERE */
-    std::cout << "overall across all nodes, mean in-degree: " << /*TODO*/ << "mean out-degree:" << /*TODO*/<< std::endl;
+    std::cout << "overall across all nodes, mean in-degree: " << /*TODO << */ "mean out-degree:" << /*TODO <<*/ std::endl;
 
   }
   catch (Exception& e) {

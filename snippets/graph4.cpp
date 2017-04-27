@@ -22,7 +22,9 @@ int main (int argc, char* argv[]){
     uint32_t nb_traversed_simple_paths = 0;
 
     std::stack<Node> to_traverse;
-    to_traverse.push(start_node)
+    to_traverse.push(start_node);
+
+    while (to_traverse.size() > 0)
     {
         /* ADD CODE HERE */
     }
