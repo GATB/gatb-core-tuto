@@ -810,7 +810,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph2.cpp",
     "data_set" : "fasta_medium",
     "solution":{
-         "code":" Node node = it.item();\n nb_in_neighbors = graph.indegree(node);\n nb_out_neighbors = graph.outdegree(node);",
+         "code":' Node node = it.item();\n nb_in_neighbors = graph.indegree(node);\n nb_out_neighbors = graph.outdegree(node);',
          "line":"24",
       },
 
@@ -837,7 +837,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph3.cpp",
     "data_set" : "fasta_medium",
     "solution":{
-         "code":"  while ( graph.outdegree(node) == 1) \n { node = graph.successors(node)[0];\n path_len++;\n  }",
+         "code":'  while ( graph.outdegree(node) == 1) \n { node = graph.successors(node)[0];\n path_len++;\n  }',
          "line":"23",
       },
 
@@ -865,7 +865,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph4.cpp",
     "data_set" : "fasta_medium",
     "solution":{
-         "code":"         Graph::Vector<Node> vector = graph.successors(node);\n        for (int i = 0; i < vector.size(); i++)\n        {\n            Node neighbor = vector[i];\n            if (already_traversed.find(neighbor) == already_traversed.end())\n            {   \n                to_traverse.push(neighbor);\n                already_traversed.insert(neighbor);\n            }\n        }",
+         "code":'         Graph::Vector<Node> vector = graph.successors(node);\n        for (int i = 0; i < vector.size(); i++)\n        {\n            Node neighbor = vector[i];\n            if (already_traversed.find(neighbor) == already_traversed.end())\n            {   \n                to_traverse.push(neighbor);\n                already_traversed.insert(neighbor);\n            }\n        }',
          "line":"38",
       },
 
