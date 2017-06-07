@@ -809,6 +809,11 @@ var TRAINING_GRAPH_SNIPPETS = [
     "description" : "Iterate all the nodes of the graph, and compute their number of in-neighors and out-neighbors (those numbers are also known respectively as in-degree and out-degree). Then, print the mean in-degree and mean out-degree across the entire graph.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph2.cpp",
     "data_set" : "fasta_medium",
+    "solution":{
+         "code":" Node node = it.item();\n nb_in_neighbors = graph.indegree(node);\n nb_out_neighbors = graph.outdegree(node);",
+         "line":"24",
+      },
+
     "classes" : [
       {
         "name" : "Node",
@@ -831,6 +836,12 @@ var TRAINING_GRAPH_SNIPPETS = [
     "description" : "Given a node in the de Bruijn graph, keep traversing the path that starts at that node and follows its out-neighbor, as long as there is a single out-neighbor",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph3.cpp",
     "data_set" : "fasta_medium",
+    "solution":{
+         "code":"  while ( graph.outdegree(node) == 1) \n { node = graph.successors(node)[0];\n path_len++;\n  }",
+         "line":"23",
+      },
+
+
     "classes" : [
       {
         "name" : "Node",
@@ -850,9 +861,15 @@ var TRAINING_GRAPH_SNIPPETS = [
     "type":SNIPPET_TYPE_LESSON,
     "nav":"exercice 3",
     "title" : "exercice 3: traverse many paths in depth-first order",
-    "description" : "Given a node in the de Bruijn graph, keep traversing the path that starts at that node and keep following the out-neighbors, in a depth-first search fashion. You may use the simplePath() function to traverse a simple path in a single call.",
+    "description" : "Given a node in the de Bruijn graph, keep traversing the graph that starts at that node and keep following its out-neighbors, in a depth-first search fashion. ",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph4.cpp",
     "data_set" : "fasta_medium",
+    "solution":{
+         "code":"         Graph::Vector<Node> vector = graph.successors(node);\n        for (int i = 0; i < vector.size(); i++)\n        {\n            Node neighbor = vector[i];\n            if (already_traversed.find(neighbor) == already_traversed.end())\n            {   \n                to_traverse.push(neighbor);\n                already_traversed.insert(neighbor);\n            }\n        }",
+         "line":"38",
+      },
+
+
     "classes" : [
       {
         "name" : "Node",

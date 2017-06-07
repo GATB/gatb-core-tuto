@@ -19,10 +19,11 @@ int main (int argc, char* argv[]){
     /* we loop over each node */
     for (it.first(); !it.isDone(); it.next()) {
 
-        /* ADD CODE HERE */
         int nb_in_neighbors = 0, nb_out_neighbors = 0;
+       
+        /* ADD CODE HERE */
 
-      std::cout << "node: " << graph.toString (it.item()) << "number of in-neighbors: " << nb_in_neighbors << "number of out-neighbors:" << nb_out_neighbors << std::endl;
+      std::cout << "node: " << graph.toString (it.item()) << " number of in-neighbors: " << nb_in_neighbors << " number of out-neighbors:" << nb_out_neighbors << std::endl;
     }
 
     /* ADD CODE HERE */

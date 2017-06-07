@@ -12,25 +12,39 @@ int main (int argc, char* argv[]){
 
   try {
     /* we create the graph from the a sample Fastq file */
-    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d -verbose 0", 3);
+    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d -verbose 0", 10);
 
-    /* we get an arbitrary node in the graph */
-    Graph::Iterator<Node> it = graph.iterator ();
-    it.first();
-    Node start_node = it.item();
+    /* we create a start node, that we know exists in graph */
+    Node node = graph.buildNode("GACTGGGAAAACCCTGGCGTTACCCAACTTA");
 
-    uint32_t nb_traversed_simple_paths = 0;
+    uint32_t nb_traversed_nodes = 0;
 
     std::stack<Node> to_traverse;
-    to_traverse.push(start_node);
+    to_traverse.push(node);
+    
+    std::set<Node> already_traversed;
 
     while (to_traverse.size() > 0)
     {
+        Node node = to_traverse.top();
         to_traverse.pop();
+        nb_traversed_nodes++;
+        
+        std::cout << "traversing " << graph.toString(node) << std::endl;
+        
         /* ADD CODE HERE */
+        
+
+        /* you might want to use this template:        
+        Graph::Vector<Node> vector = ... 
+        for (int i = 0; i < vector.size(); i++)
+        {
+            Node neighbor = vector[i]; 
+        }
+        */
     }
    
-    std::cout << "traversed " << nb_traversed_simple_paths << " simple paths" << std::endl;
+    std::cout << "traversed " << nb_traversed_nodes << " nodes" << std::endl;
 
 
   }
@@ -39,3 +53,4 @@ int main (int argc, char* argv[]){
     return EXIT_FAILURE;
   }
 }
+

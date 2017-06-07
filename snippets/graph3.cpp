@@ -11,17 +11,21 @@ int main (int argc, char* argv[]){
 
   try {
     /* we create the graph from the a sample Fastq file */
-    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d -verbose 0", 3);
+    Graph graph = Graph::create (Bank::open(argv[1]), "-abundance-min %d -verbose 0", 20);
 
-    /* we get an arbitrary node in the graph */
-    Graph::Iterator<Node> it = graph.iterator ();
-    it.first();
-    Node start_node = it.item();
+    /* we create a start node, that we know exists in graph */
+    Node node = graph.buildNode("GACTGGGAAAACCCTGGCGTTACCCAACTTA");
 
     int path_len = 0;
-    while ( 0 /* replace by some condition */)
+    
+    std::cout << "starting with node:" << graph.toString(node) << std::endl;
+    
+    while ( 1 /* change me*/)
     {
-        /* ADD CODE HERE */
+   		/* todo */ 
+
+        path_len++;
+		break; // remove me
     }
 
     std::cout << "length of the path starting from start_node, and following nodes with single out-neighbors: " << path_len << std::endl;
@@ -32,3 +36,5 @@ int main (int argc, char* argv[]){
     return EXIT_FAILURE;
   }
 }
+
+
