@@ -803,7 +803,7 @@ var TRAINING_GRAPH_SNIPPETS = [
   },
   {
     "name":"T-graph2",
-    "type":SNIPPET_TYPE_LESSON,
+    "type":SNIPPET_TYPE_EXERCISE,
     "nav":"exercice 1",
     "title" : "exercice 1: compute the in- and out-degrees of all nodes.",
     "description" : "Iterate all the nodes of the graph, and compute their number of in-neighors and out-neighbors (those numbers are also known respectively as in-degree and out-degree). Then, print the mean in-degree and mean out-degree across the entire graph.",
@@ -830,7 +830,7 @@ var TRAINING_GRAPH_SNIPPETS = [
   },
   {
     "name":"T-graph3",
-    "type":SNIPPET_TYPE_LESSON,
+    "type":SNIPPET_TYPE_EXERCISE,
     "nav":"exercice 2",
     "title" : "exercice 2: traverse the graph from a given node.",
     "description" : "Given a node in the de Bruijn graph, keep traversing the path that starts at that node and follows its out-neighbor, as long as there is a single out-neighbor",
@@ -858,7 +858,7 @@ var TRAINING_GRAPH_SNIPPETS = [
   },
   {
     "name":"T-graph4",
-    "type":SNIPPET_TYPE_LESSON,
+    "type":SNIPPET_TYPE_EXERCISE,
     "nav":"exercice 3",
     "title" : "exercice 3: traverse many paths in depth-first order",
     "description" : "Given a node in the de Bruijn graph, keep traversing the graph that starts at that node and keep following its out-neighbors, in a depth-first search fashion. ",
