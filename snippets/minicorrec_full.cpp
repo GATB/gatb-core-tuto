@@ -18,8 +18,8 @@ int main (int argc, char* argv[])
   IBank * inbank = Bank::open(filename);
   IBank*  outBank = new BankFasta ("outbank");
   
-  Graph graph = Graph::create (" -in %s -abundance-min %d  -kmer-size %d -debloom original",argv[1], 3,kmerSize);
-  //Graph graph = Graph::load ("rsimu.h5");
+  Graph graph = Graph::create (" -in %s -abundance-min %d  -kmer-size %d -debloom original -verbose %d", 
+    argv[1], 3, kmerSize, (verbose ? 1 : 0) );
   
   if(verbose)
     std::cout << graph.getInfo() << std::endl;
@@ -30,8 +30,13 @@ int main (int argc, char* argv[])
   std::cout << "nbseq : " << nbseq << " totalsize " << totalsize << std::endl;
   
   //wrapped with a progress iterator
-  ProgressIterator<Sequence> *it = new ProgressIterator<Sequence> (*inbank, "Iterating sequences");
-  
+  Iterator<Sequence>* it;
+  if (verbose){
+    it = new ProgressIterator<Sequence> (*inbank, "Iterating sequences");
+  }
+  else {
+    it = inbank->iterator();
+  }
   // We declare a kmer model with a given span size.
   Kmer<span>::ModelCanonical model (kmerSize);
   
