@@ -11,4 +11,4 @@ fastq_small=/home/allgo/data/celegans_reads.fastq
 fasta_medium=/home/allgo/data/dna_sample_5K.fa.gz 
 h5_small=/home/allgo/data/celegans_reads.h5
 snp_small=/home/allgo/data/snp_reads.fasta
-
+minicorrec=/home/allgo/data/test_error.fasta
