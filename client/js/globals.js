@@ -88,10 +88,10 @@ var RETRY_CONNECT_ALLGO=10;
 var GATB_RELEASE="b1.2.2";
 
 //we have a specific release numbering on this tutorial
-var GATB_ONLINE_TUTO_RELEASE="1.0.2";
+var GATB_ONLINE_TUTO_RELEASE="1.1.0";
 
 // The URL that can be used to let the user access data set used in the lessons
-var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/training/data/";
+var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/ibc/data/";
 var DATA_MAPPER_FILE="data-file-mapper.txt";
 
 // Hash data strings
@@ -865,7 +865,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph4.cpp",
     "data_set" : "fasta_medium",
     "solution":{
-         "code":'         Graph::Vector<Node> vector = graph.successors(node);\n        for (int i = 0; i < vector.size(); i++)\n        {\n            Node neighbor = vector[i];\n            if (already_traversed.find(neighbor) == already_traversed.end())\n            {   \n                to_traverse.push(neighbor);\n                already_traversed.insert(neighbor);\n            }\n        }',
+         "code":'        Graph::Vector<Node> vector = graph.successors(node);\n        for (int i = 0; i < vector.size(); i++)\n        {\n            Node neighbor = vector[i];\n            if (already_traversed.find(neighbor) == already_traversed.end())\n            {   \n                to_traverse.push(neighbor);\n                already_traversed.insert(neighbor);\n            }\n        }',
          "line":"38",
       },
 
@@ -883,10 +883,83 @@ var TRAINING_GRAPH_SNIPPETS = [
         "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1debruijn_1_1impl_1_1GraphTemplate.html#details"
       }
     ]
-  },
-
-
+  }
 ];
+
+
+var TRAINING_CORREC_SNIPPETS = [
+  {
+    "name":"T-correc1",
+    "type":SNIPPET_TYPE_EXERCISE,
+    "nav":"Exercice 1",
+    "title" : "Exercice 1: complete this simple read corrector code skeleton",
+    "description" : "Here is a simple code to setup a simple read corrector program. <br>Analyse the code and complete the two missing parts.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/minicorrec1.cpp",
+    "data_set" : "minicorrec",
+    "classes" : [
+      {
+        "name" : "Graph",
+        "doc" : "represent a de Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1debruijn_1_1impl_1_1GraphTemplate.html#details"
+      },
+      {
+        "name" : "ModelCanonical",
+        "doc" : "a Model that handles 'canonical' kmers.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1kmer_1_1impl_1_1Kmer_1_1ModelCanonical.html#details"
+      },
+      {
+        "name" : "Node",
+        "doc" : "to represent a node in a De Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1debruijn_1_1impl_1_1Node__t.html"
+      }
+    ]
+  },
+  {
+    "name":"T-correc2",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"Solution to Exercice 1",
+    "title" : "Solution to exercice 1",
+    "description" : "Here is a simple code to iterate over sequences and its kmers.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/minicorrec2.cpp",
+    "data_set" : "minicorrec"
+  },
+  {
+    "name":"T-correc3",
+    "type":SNIPPET_TYPE_EXERCISE,
+    "nav":"Exercice 2",
+    "title" : "Exercice 2: enhance the previous code to correct reads",
+    "description" : "In this exercice, you'll have to analyse kmers in order to correct reads.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/minicorrec2_easier.cpp",
+    "data_set" : "minicorrec",
+    "classes" : [
+      {
+        "name" : "Graph",
+        "doc" : "represent a de Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1debruijn_1_1impl_1_1GraphTemplate.html#details"
+      },
+      {
+        "name" : "ModelCanonical",
+        "doc" : "a Model that handles 'canonical' kmers.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1kmer_1_1impl_1_1Kmer_1_1ModelCanonical.html#details"
+      },
+      {
+        "name" : "Node",
+        "doc" : "to represent a node in a De Bruijn graph.",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1debruijn_1_1impl_1_1Node__t.html"
+      }
+    ]
+  },
+  {
+    "name":"T-correc4",
+    "type":SNIPPET_TYPE_LESSON,
+    "nav":"Solution to Exercice 2",
+    "title" : "Solution to Exercice 2: a complete simple read corrector",
+    "description" : "Here is a possible solution for a simple short read corrector.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/minicorrec_full.cpp",
+    "data_set" : "minicorrec"
+  }
+];
+
 /**
  * Contains all available snippets
  */
@@ -971,6 +1044,13 @@ var ALL_SNIPPETS = [
     "description":"Graph API provides classes and methods to handle De Bruijn graphs.",
     "trail_path":TRAINING_TRAIL, 
     "snippets": TRAINING_GRAPH_SNIPPETS
+  },
+  {
+    "name": "read-corrector",
+    "nav":"read-corrector",
+    "description":"Write a complete GATB-Core based tool: a short read corrector.",
+    "trail_path":TRAINING_TRAIL, 
+    "snippets": TRAINING_CORREC_SNIPPETS
   }
 ];
 
