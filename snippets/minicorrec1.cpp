@@ -7,6 +7,21 @@ static const size_t span =  32;
 bool verbose = false;
 int kmerSize = 31;
 
+/** 
+  * Prepare a unique temporary file name to write out sequences.
+  */
+string getOutFileName(){
+  struct timeval tp;
+  gettimeofday(&tp, NULL);
+  long long mslong = (long long) tp.tv_sec * 1000L + tp.tv_usec / 1000; //get current timestamp in milliseconds
+  string fN = "outbank_";
+  fN.append(to_string(mslong));
+  return fN;
+}
+
+/** 
+  * Start program here.
+  */
 int main (int argc, char* argv[])
 {
   
@@ -16,30 +31,26 @@ int main (int argc, char* argv[])
     exit(1);
   }
   
-  // We get the file name from the user arguments
+  // We get the sequence file name from the user arguments
   const char* filename = argv[1] ;
   
+  // Open the source file to read sequences
   IBank * inbank = Bank::open(filename);
-  IBank*  outBank = new BankFasta ("outbank");
+  // Open a target file to write sequences
+  IBank*  outBank = new BankFasta (getOutFileName());
   
   
   ///////////////  TODO  create graph here ////////////
   
   
-  //simple iterator
-  Iterator<Sequence>* it = inbank->iterator();
-  
-  //or wrapped with a progress iterator
-  //ProgressIterator<Sequence> *it = new ProgressIterator<Sequence> (*inbank, "Iterating sequences");
-  
-  //for kmerisation
-  // We declare a kmer model with a given span size.
+  //To get kmers from sequences, we need:
+  // 1- a kmer model with a given span size.
   Kmer<span>::ModelCanonical model (kmerSize);
-  
-  // We declare a kmer iterator
+  // 2- a kmer iterator
   Kmer<span>::ModelCanonical::Iterator itKmer (model);
   
-  // We loop over sequences.
+  // We loop over sequences from source file.
+  Iterator<Sequence>* it = inbank->iterator();
   for (it->first(); !it->isDone(); it->next())
   {
     // Shortcut
