@@ -53,7 +53,7 @@ int main (int argc, char* argv[])
   Iterator<Sequence>* it = inbank->iterator();
   for (it->first(); !it->isDone(); it->next())
   {
-    // Shortcut
+    // we get the sequence object
     Sequence& seq = it->item();
     
     if (verbose)

@@ -60,12 +60,14 @@ int main (int argc, char* argv[])
   
   int64_t nb_simple_error_corrected=0;
   int gap_size=0;
-
+  int readnum=0;
+  
   // We loop over sequences.
   for (it->first(); !it->isDone(); it->next())
   {
-    // Shortcut
+    // we get the sequence object
     Sequence& seq = it->item();
+    // we get the data buffer from the sequence: we'll use it to correct the sequence
     char* data = seq.getDataBuffer();
     
     // We set the data from which we want to extract kmers.
@@ -97,15 +99,17 @@ int main (int argc, char* argv[])
           for(int i = 0; i < 4; i++)
           {
             char nt = data[pos-1];
-            data[pos-1] = bin2NT[i]; //change the sequence nulceotide at this pos
+            // change the sequence nulceotide at this pos
+            data[pos-1] = bin2NT[i]; 
             Kmer<span>::ModelCanonical::Kmer  putative_corrected_kmer = model.codeSeed(data,Data::ASCII,pos-1);
             if(graph.contains(  Node(Node::Value(putative_corrected_kmer.value()))  ))
             {
-              printf("found correction at pos %i  :%c \n",pos,bin2NT[i]);
+              printf("found correction on read %d at pos %i: %c \n",readnum, pos,bin2NT[i]);
               nb_simple_error_corrected++;
               break;
             }
-            data[pos-1] = nt; //revert to original nt if kmer with nti was not solid
+            //revert to original nt if kmer was not solid
+            data[pos-1] = nt;
           }
         }
         gap_size=0;
@@ -119,8 +123,9 @@ int main (int argc, char* argv[])
       if (verbose)  {  cout << model.toString (itKmer->value()) << endl;  }
       pos++;
     }
+    readnum++;
     outBank->insert (seq);
   }
-  printf("  nb_simple_error corrected %lli\n",nb_simple_error_corrected);
+  printf("\nnb_simple_error corrected %lli\n",nb_simple_error_corrected);
   outBank->flush();
 }
