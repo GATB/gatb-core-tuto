@@ -11,6 +11,25 @@
  */
 
 /**
+ * Call function 'fn' asynchronously.
+ */
+function async(fn) {
+    setTimeout(function() {
+        fn();
+    }, 0);
+}
+
+/**
+ * Reset content of compile and results Ace Editors.
+ */
+function cleanConsoles(){
+    setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
+    $("#"+HTML_ELEMENT_COMP_CONSOLE+"-icon").html("");
+    setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
+    $("#"+HTML_ELEMENT_RUN_CONSOLE+"-icon").html("");
+}
+
+/**
  * Submit a new job to A||GO server.
  */
 function call_allgo(dataSetName, cmdline) {
@@ -45,9 +64,7 @@ function call_allgo(dataSetName, cmdline) {
     formData.append("files[0]", blob, DEFAULT_SNIPPET_CODE_NAME);
     
     $("#"+HTML_ELEMENT_COMPILE_BTN).attr('disabled','disabled');
-    setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
-    setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
-    //$("#"+HTML_ELEMENT_CONSOLE).hide();
+    async(cleanConsoles);
     
     //send GET to A||GO
     console.log("Sending request to Allgo...");
@@ -230,5 +247,8 @@ function setResultText( consoleID, data ){
   var editor = document.getElementById(consoleID).env.editor;
   editor.setValue(data, 1);
   editor.scrollToRow(1);
+  //editor.resize();
+  //editor._emit('change');
+  //document.getElementById(consoleID).click();
 }
 
