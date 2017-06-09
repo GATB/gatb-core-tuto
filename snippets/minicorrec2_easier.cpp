@@ -1,6 +1,9 @@
+
 #include <gatb/gatb_core.hpp>
+#include <iostream>
 
 static const size_t span =  32;
+
 bool verbose = false;
 int kmerSize = 31;
 
@@ -21,48 +24,43 @@ string getOutFileName(){
   */
 int main (int argc, char* argv[])
 {
+  
   if(argc != 2)
   {
     printf("%s filename\n",argv[0]);
     exit(1);
   }
   
-  // We get the file name from the user arguments
+  // We get the sequence file name from the user arguments
   const char* filename = argv[1] ;
   
+  // Open the source file to read sequences
   IBank * inbank = Bank::open(filename);
+  // Open a target file to write sequences
   IBank*  outBank = new BankFasta (getOutFileName());
   
-  Graph graph = Graph::create (" -in %s -abundance-min %d  -kmer-size %d -debloom original -verbose %d", 
+  Graph graph = Graph::create (" -in %s -abundance-min %d  -kmer-size %d -verbose %d", 
     argv[1], 3, kmerSize, (verbose ? 1 : 0) );
-  
   if(verbose)
     std::cout << graph.getInfo() << std::endl;
-  
-  //not exact numbers, only estimation from extrapolation
-  int64_t  nbseq = inbank->estimateNbItems();
+
+  //for information, print bank size (not exact numbers, only estimation from extrapolation)
+  u_int64_t  nbseq = inbank->estimateNbItems();
   u_int64_t totalsize =  inbank->estimateSequencesSize();
-  std::cout << "nbseq : " << nbseq << " totalsize " << totalsize << std::endl;
+  std::cout << "#sequences: " << nbseq << " - #nucleotides: " << totalsize << std::endl;
   
-  //wrapped with a progress iterator
-  Iterator<Sequence>* it;
-  if (verbose){
-    it = new ProgressIterator<Sequence> (*inbank, "Iterating sequences");
-  }
-  else {
-    it = inbank->iterator();
-  }
-  // We declare a kmer model with a given span size.
+  //To get kmers from sequences, we need:
+  // 1- a kmer model with a given span size.
   Kmer<span>::ModelCanonical model (kmerSize);
-  
-  // We declare a kmer iterator
+  // 2- a kmer iterator
   Kmer<span>::ModelCanonical::Iterator itKmer (model);
   
+  // we declare some utility variables
   int64_t nb_simple_error_corrected=0;
   int gap_size=0;
-  int readnum=0;
-  
-  // We loop over sequences.
+
+  // We loop over sequences from source file.
+  Iterator<Sequence>* it = inbank->iterator();
   for (it->first(); !it->isDone(); it->next())
   {
     // we get the sequence object
@@ -70,19 +68,16 @@ int main (int argc, char* argv[])
     // we get the data buffer from the sequence: we'll use it to correct the sequence
     char* data = seq.getDataBuffer();
     
-    // We set the data from which we want to extract kmers.
-    itKmer.setData ((*it)->getData());
-    
     if (verbose)
     {
       // We dump the data size and the comment
       std::cout << "[" << seq.getDataSize() << "] " << seq.getComment()  << std::endl;
+      
       // We dump the data
       std::cout << seq.toString() << std::endl;
     }
     
     int pos = 0;
-    // We iterate the kmers.
     for (itKmer.first(); !itKmer.isDone(); itKmer.next())
     {
       //build node from a kmer
@@ -99,17 +94,23 @@ int main (int argc, char* argv[])
           for(int i = 0; i < 4; i++)
           {
             char nt = data[pos-1];
-            // change the sequence nulceotide at this pos
+            //change the sequence nucleotide at this pos
             data[pos-1] = bin2NT[i]; 
-            Kmer<span>::ModelCanonical::Kmer  putative_corrected_kmer = model.codeSeed(data,Data::ASCII,pos-1);
-            if(graph.contains(  Node(Node::Value(putative_corrected_kmer.value()))  ))
+            
+            ///////////// TODO: create the putative kmer with model.codeSeed() method
+            
+            Kmer<span>::ModelCanonical::Kmer  putative_corrected_kmer =   . . .
+            
+            ///////////// TODO: use graph.contains inside the if() to check if the 
+            /////////////       putative_corrected_kmer is solid
+            if( . . . )
             {
-              printf("found correction on read %d at pos %i: %c \n",readnum, pos,bin2NT[i]);
+              printf("found correction at pos %i  :%c \n",pos,bin2NT[i]);
               nb_simple_error_corrected++;
               break;
             }
             //revert to original nt if kmer was not solid
-            data[pos-1] = nt;
+            data[pos-1] = nt; 
           }
         }
         gap_size=0;
@@ -123,9 +124,10 @@ int main (int argc, char* argv[])
       if (verbose)  {  cout << model.toString (itKmer->value()) << endl;  }
       pos++;
     }
-    readnum++;
+
+    
     outBank->insert (seq);
   }
-  printf("\nnb_simple_error corrected %lli\n",nb_simple_error_corrected);
+  printf("  nb_simple_error corrected %lli\n",nb_simple_error_corrected);
   outBank->flush();
 }
