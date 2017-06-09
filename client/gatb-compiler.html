@@ -192,7 +192,21 @@
       <script>
         $("#tuto-release-tag").html(GATB_ONLINE_TUTO_RELEASE);
         checkBrowser();
-      </script>
+        // This is a hack to force content update for hidden Ace editors:
+        // somehow, we have to call resize() method.  
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+           var str = ""+e.target;
+           //console.log(str);
+           if (str.indexOf("#compile-status")!=-1){
+               var editor = document.getElementById(HTML_ELEMENT_COMP_CONSOLE).env.editor;
+               editor.resize();
+           }
+           else if (str.indexOf("#running-status")!=-1){
+               var editor = document.getElementById(HTML_ELEMENT_RUN_CONSOLE).env.editor;
+               editor.resize();
+           }
+         });
+       </script>
 
   </body>
 </html>
