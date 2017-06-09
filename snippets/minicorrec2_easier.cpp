@@ -94,18 +94,23 @@ int main (int argc, char* argv[])
           for(int i = 0; i < 4; i++)
           {
             char nt = data[pos-1];
-            data[pos-1] = bin2NT[i]; //change the sequence nulceotide at this pos
+            //change the sequence nucleotide at this pos
+            data[pos-1] = bin2NT[i]; 
             
-            ///////////// TODO  create the putative kmer with model.codeSeed() method  ///////////////////
+            ///////////// TODO: create the putative kmer with model.codeSeed() method
+            
             Kmer<span>::ModelCanonical::Kmer  putative_corrected_kmer =   . . .
-            ///////////// TODO use graph.contains inside the if()  to check if the putative_corrected_kmer is solid
+            
+            ///////////// TODO: use graph.contains inside the if() to check if the 
+            /////////////       putative_corrected_kmer is solid
             if( . . . )
             {
               printf("found correction at pos %i  :%c \n",pos,bin2NT[i]);
               nb_simple_error_corrected++;
               break;
             }
-            data[pos-1] = nt; //revert to original nt if kmer with nti was not solid
+            //revert to original nt if kmer was not solid
+            data[pos-1] = nt; 
           }
         }
         gap_size=0;
