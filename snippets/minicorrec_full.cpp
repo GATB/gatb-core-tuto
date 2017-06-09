@@ -4,6 +4,21 @@ static const size_t span =  32;
 bool verbose = false;
 int kmerSize = 31;
 
+/** 
+  * Prepare a unique temporary file name to write out sequences.
+  */
+string getOutFileName(){
+  struct timeval tp;
+  gettimeofday(&tp, NULL);
+  long long mslong = (long long) tp.tv_sec * 1000L + tp.tv_usec / 1000; //get current timestamp in milliseconds
+  string fN = "outbank_";
+  fN.append(to_string(mslong));
+  return fN;
+}
+
+/** 
+  * Start program here.
+  */
 int main (int argc, char* argv[])
 {
   if(argc != 2)
@@ -16,7 +31,7 @@ int main (int argc, char* argv[])
   const char* filename = argv[1] ;
   
   IBank * inbank = Bank::open(filename);
-  IBank*  outBank = new BankFasta ("outbank");
+  IBank*  outBank = new BankFasta (getOutFileName());
   
   Graph graph = Graph::create (" -in %s -abundance-min %d  -kmer-size %d -debloom original -verbose %d", 
     argv[1], 3, kmerSize, (verbose ? 1 : 0) );
