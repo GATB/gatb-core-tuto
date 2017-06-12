@@ -91,7 +91,7 @@ var GATB_RELEASE="b1.2.2";
 var GATB_ONLINE_TUTO_RELEASE="1.1.0";
 
 // The URL that can be used to let the user access data set used in the lessons
-var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/ibc/data/";
+var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/training/data/";
 var DATA_MAPPER_FILE="data-file-mapper.txt";
 
 // Hash data strings
@@ -716,6 +716,34 @@ var TRAINING_BANK_SNIPPETS = [
         "name" : "BankFasta",
         "doc" : "to read Fasta files in compressed or plain text format.",
         "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/classgatb_1_1core_1_1bank_1_1impl_1_1BankFasta.html#details"
+      }
+    ] 
+  },
+  {
+    "name":"T-ex_bank3",
+    "type":SNIPPET_TYPE_EXERCISE,
+    "nav":"exercise 3",
+    "title" : "exercise 3: play with the Sequence API",
+    "description" : "Trim 20 nt at the end of the sequence, and filter out sequences that have more than 20 ’N’.",
+    "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/io5.cpp",
+    "data_set" : "fq_small_N",
+    "solution":{
+         "code":"    seq.setDataRef( & seq.getData () , 0, seq.getDataSize()-20 );\n"+
+                "    int  nbN = 0; char* data = seq.getDataBuffer ();\n"+
+                "    for (int i=0 ; i < seq.getDataSize() ; i++){\n"+
+                "       if (data[i]=='N' ) { nbN++; }\n"+
+                "    }\n"+
+                "    if(nbN <20){\n"+
+                "      nbseqOk++;\n"+
+                "      outBank->insert (seq);\n"+
+                "    }",
+         "line":"24",
+      },
+    "classes" : [
+      {
+        "name" : "Sequence",
+        "doc" : "look at setDataRef() and getDataSize().",
+        "doc_url" : "http://gatb-core.gforge.inria.fr/doc/api/structgatb_1_1core_1_1bank_1_1Sequence.html#details"
       }
     ] 
   }
