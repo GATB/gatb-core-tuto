@@ -3,10 +3,11 @@
 # data-set file is a real filepath located on ALLGO/GATB-Compiler app
 # (server side).
 #
-# Author: Patrick Durand, Inria - October 1026
+# Author: Patrick Durand, Inria - October 2016
 
 fasta_small=/home/allgo/data/celegans_reads.fasta
 fastq_small=/home/allgo/data/celegans_reads.fastq
+fastq_small_N=/home/allgo/data/readN.fastq
 # the fasta_medium file comes from gatb-core/gatb-core/test/db: reads3.fa.gz
 fasta_medium=/home/allgo/data/dna_sample_5K.fa.gz 
 h5_small=/home/allgo/data/celegans_reads.h5
