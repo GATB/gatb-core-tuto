@@ -16,6 +16,7 @@ int main (int argc, char* argv[]){
 
   /* we iterate over sequences from inout file */
   Iterator<Sequence>* it = inbank->iterator();
+  int nbseqOk=0;
   for (it->first(); !it->isDone(); it->next()){
     /* we get the sequence so that we can edit it */
     Sequence& seq = it->item();
@@ -29,6 +30,9 @@ int main (int argc, char* argv[]){
      */
      
   }
+  /* we provide a summary of the results*/
+  std::cout << "Sequences retained: " << nbseqOk << std::endl;
+  
   /* do not forget to flush content */
   outBank->flush();
 }
