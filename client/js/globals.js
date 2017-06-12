@@ -88,7 +88,7 @@ var RETRY_CONNECT_ALLGO=10;
 var GATB_RELEASE="b1.2.2";
 
 //we have a specific release numbering on this tutorial
-var GATB_ONLINE_TUTO_RELEASE="1.1.0";
+var GATB_ONLINE_TUTO_RELEASE="1.1.1";
 
 // The URL that can be used to let the user access data set used in the lessons
 var DATA_SET_LOADER_URL="http://gatb-core.gforge.inria.fr/training/data/";
