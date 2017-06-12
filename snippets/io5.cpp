@@ -17,15 +17,14 @@ int main (int argc, char* argv[]){
   /* we iterate over sequences from inout file */
   Iterator<Sequence>* it = inbank->iterator();
   for (it->first(); !it->isDone(); it->next()){
-    /* we write the sequence into the new bank */
+    /* we get the sequence so that we can edit it */
     Sequence& seq = it->item();
     
     /** ADD YOUR CODE HERE **/
     
     /*
      * Hints: 
-     *  1. use seq.setDataRef( & seq.getData(),...)
-     *     to trim
+     *  1. use seq.setDataRef(&seq.getData(),...) to trim
      *  2. use seq.getDataBuffer() to count N’s
      */
      
