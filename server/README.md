@@ -4,7 +4,11 @@ Contains the elements going on the GATB-Compiler Linux VM hosted on the A||GO Pl
 
 # GATB-Core version
 
-This tutorial relies on release v1.2.2 of GATB-Core library.
+This tutorial relies on release v1.2.2 of GATB-Core library. Fore more information about
+the exact source code of GATB-Core used by the tutorial, please refer to file 'global.js'
+located in [client/js](https://github.com/GATB/gatb-core-tuto/blob/master/client/js); see
+declaration: GATB_RELEASE="b1.2.2".
+
 
 # Test
 
