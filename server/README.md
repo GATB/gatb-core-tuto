@@ -1,8 +1,12 @@
-#About
+# About
 
 Contains the elements going on the GATB-Compiler Linux VM hosted on the A||GO Platform.
 
-#Test
+# GATB-Core version
+
+This tutorial relies on release v1.2.2 of GATB-Core library.
+
+# Test
 
 Script 'gatbcompiler.sh' can be used for testing/debugging purposes as follows:
 

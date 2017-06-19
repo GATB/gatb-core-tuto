@@ -3,6 +3,8 @@
 
 [![License](http://img.shields.io/:license-Affero--GPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0.en.html)
 
+CAUTION: project is officially hosted on Inria Forge. Github is just a mirror: do not commit there!
+
 ## About GATB-Core
 
 The **GATB-CORE project** provides a set of highly efficient algorithms to analyse NGS data sets. These 
@@ -10,6 +12,10 @@ methods enable the analysis of data sets of any size on multi-core desktop compu
 huge amount of reads data coming from any kind of organisms such as bacteria, plants, animals and 
 even complex samples (e.g. metagenomes). Read more about GATB at <a href="https://project.inria.fr/gatb/">https://project.inria.fr/gatb</a>.
  
+## Enter the tutorial room
+
+[Start the official GATB-Core online tutorial](http://gatb-core.gforge.inria.fr/training).
+
 ## About this tutorial project
 
 This project contains the source code that makes running the Online GATB-Core Programming Tutorial available [here](http://gatb-core.gforge.inria.fr/training).
