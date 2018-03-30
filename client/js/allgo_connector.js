@@ -11,25 +11,6 @@
  */
 
 /**
- * Call function 'fn' asynchronously.
- */
-function async(fn) {
-    setTimeout(function() {
-        fn();
-    }, 0);
-}
-
-/**
- * Reset content of compile and results Ace Editors.
- */
-function cleanConsoles(){
-    setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
-    $("#"+HTML_ELEMENT_COMP_CONSOLE+"-icon").html("");
-    setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
-    $("#"+HTML_ELEMENT_RUN_CONSOLE+"-icon").html("");
-}
-
-/**
  * Submit a new job to A||GO server.
  */
 function call_allgo(dataSetName, cmdline) {
@@ -64,7 +45,9 @@ function call_allgo(dataSetName, cmdline) {
     formData.append("files[0]", blob, DEFAULT_SNIPPET_CODE_NAME);
     
     $("#"+HTML_ELEMENT_COMPILE_BTN).attr('disabled','disabled');
-    async(cleanConsoles);
+    setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
+    setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
+    $("#"+HTML_ELEMENT_CONSOLE).hide();
     
     //send GET to A||GO
     console.log("Sending request to Allgo...");
@@ -84,15 +67,13 @@ function call_allgo(dataSetName, cmdline) {
           $( "#"+HTML_ELEMENT_JB_MON ).html( "<p style='color:green;font-weight: bold;'>Job running...</p>" );
           setResultText(HTML_ELEMENT_COMP_CONSOLE, "-");
           setResultText(HTML_ELEMENT_RUN_CONSOLE, "-");
-          getAllgoResponseLoop(d, tk, 0);
+          getAllgoResponseLoop(d, tk);
         },
         error : function(d, s, ex){
           $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
-          console.log("!!!!!");
-          console.log("job submission: error. Status: "+s);
-          console.log("Exception: "+ex);
-          console.log("!!!!!");
-          $( "#"+HTML_ELEMENT_JB_MON ).html( "<p style='color:red;font-weight: bold;'>Error: "+d.status+": "+d.statusText+". Job aborted. </p>");
+          console.log("job submission: error");
+          console.log(ex);
+          $( "#"+HTML_ELEMENT_JB_MON ).html( "<p style='color:red;font-weight: bold;'>Error:"+d.status+": "+d.statusText+". Job aborted. </p>");
        }
       })
     return false;
@@ -111,34 +92,27 @@ function call_allgo(dataSetName, cmdline) {
  * @param token authentication  token to access the A||GO/GATB-Compiler
  * using A||GO API.
  */
-function getAllgoResponseLoop(data, token, counter) {
+function getAllgoResponseLoop(data, token) {
   var result;
-  
-  counter++;
   
   setTimeout(function() {
     //connect to A||GO abd get its status (A JSON object)
     result = getAllgoResponse(data,token);
-    console.log("Attempt #"+counter);
+    console.log(result);
     
-    if (result.status !== undefined) {
-      if (counter>RETRY_CONNECT_ALLGO){
-      $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:red;font-weight: bold;'>Job timed out.</p>");
-        $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
-        return;
-      }
+    if (result.status !== "done") {
       //result not yet ready
-      getAllgoResponseLoop(data,token,counter);
+      getAllgoResponseLoop(data,token);
     }
     else {
       //job ready, check for result
-      if (result[data.id] !== undefined) {
+      //if (result[data.id] !== undefined) {
         processResultFile(HTML_ELEMENT_COMP_CONSOLE, "compile.log", result[data.id]['compile.log']);
         processResultFile(HTML_ELEMENT_RUN_CONSOLE, "output.log", result[data.id]['output.log']);
         $("#"+HTML_ELEMENT_JB_MON).html("<p style='color:green;font-weight: bold;'>Job done.</p>");
         $("#"+HTML_ELEMENT_COMPILE_BTN).removeAttr('disabled');
-        $('[href="#'+HTML_ELEMENT_COMP_CONSOLE_TAB+'"]').tab('show');
-      }
+        $("#"+HTML_ELEMENT_CONSOLE).show();
+      //}
     }
   }, 2000 /*Time to wait between successive Allgo call: 2 seconds */);
 }
@@ -212,7 +186,7 @@ function getAllgoResponse(data, token) {
       'Accept': 'application/json',
     },
     success: function(d, s, ex) {
-      console.log('A||GO request: ok');
+      console.log('A||GO request: success');
       console.log(d);
       console.log(s);
       console.log(ex);
@@ -247,8 +221,5 @@ function setResultText( consoleID, data ){
   var editor = document.getElementById(consoleID).env.editor;
   editor.setValue(data, 1);
   editor.scrollToRow(1);
-  //editor.resize();
-  //editor._emit('change');
-  //document.getElementById(consoleID).click();
 }
 
