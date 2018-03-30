@@ -189,23 +189,22 @@ def waitForResult(job_id, job_url):
     if __VERBOSE__:
       print ("INFO: try %d" % (trials+1))
     job_status=json.loads(getJobStatus(job_url))
-    # when a job is still running on allgo, we have: {"status":"in progress"}
-    # we display that information whatever verbose mode
-    if "status" in job_status:
-      print ("INFO: Job: %s" % job_status["status"])
-    # otherwise we have a result like (format specific to GATB-Compile app):
-    #  { "8027":
-    #    { "output.log": "https://.../output.log",
-    #      "gatb-bin": "https://.../gatb-bin",
-    #      "allgo.log":"https://.../allgo.log",
-    #      "compile.log":"https://.../compile.log",
-    #      "bank1.cpp":"https://.../bank1.cpp"
-    #    }
-    #  }
-    # and we need the compile.log file
-    elif sid in job_status:
-      jobLogFile=job_status[sid]["compile.log"]
-      break
+    # job_status obtained above looks like:
+    # { "16755":
+    #   { "bank1.cpp":"https://.../bank1.cpp",
+    #     "output.log":"https://.../output.log",
+    #     "compile.log":"https://.../compile.log",
+    #     "allgo.log":"https://.../allgo.log",
+    #     "gatb-bin":"https://.../gatb-bin"
+    #   },
+    #   "status":"done"
+    # }
+
+    # we display status information (in progress, done, error) whatever verbose mode
+    print("INFO: Job: {}".format(job_status["status"]))
+    if job_status["status"] == "done":
+        jobLogFile=job_status[sid]["compile.log"]
+        break
     trials+=1
     if trials>__TRIALS_MAX__:
       break
