@@ -426,66 +426,6 @@ var ALL_SNIPPETS = [
   {
     "name": "Bank",
     "nav":"bank",
-    "description":"Bank APIs provide classes and methods to read and write sequence files. Supported formats are Fasta and Fastq, plain text or compressed (gzip) files. In the following lessons, discover how easy it is to handle sequence files using GATB-Core 'Bank' API.",
-    "trail_path":ROOKIE_TRAIL, 
-    "snippets": ROOKIE_BANK_SNIPPETS
-  },
-  {
-    "name": "k-mer",
-    "nav":"kmer",
-    "description":"k-mer APIs provide classes and methods to handle the basics of De Bruijn graphs: k-mers, i.e. short sequences of 'k' nucleotides. GATB-Core provides a convenient API to deal with k-mers, as illustrated in these lessons.",
-    "trail_path":ROOKIE_TRAIL, 
-    "snippets": ROOKIE_KMER_SNIPPETS
-  },
-  {
-    "name": "De Bruijn graph",
-    "nav":"dbg",
-    "description":"This is probably the key component of the entire GATB-Core library: its optimized De Bruijn graph object representation. This graph can be used as a powerful building block of algorithms to decypher DNA reads information.",
-    "trail_path":ROOKIE_TRAIL, 
-    "snippets": ROOKIE_DBG_SNIPPETS
-  },
-  {
-    "name": "more on De Bruijn graph",
-    "nav":"dbg2",
-    "description":"More tips on De Bruijn graphs management using GATB-Core API.",
-    "trail_path":EXPERT_TRAIL, 
-    "snippets": EXPERT_DBG_SNIPPETS,
-    "more":"http://gatb-core.gforge.inria.fr/doc/api/snippets_graph.html"
-  },
-  {
-    "name": "Multithreading",
-    "nav":"threads",
-    "description":"GATB-Core provides some APIs to handle multithreading.",
-    "trail_path":EXPERT_TRAIL, 
-    "snippets": EXPERT_THREAD_SNIPPETS,
-    "more":"http://gatb-core.gforge.inria.fr/doc/api/snippets_multithread.html"
-  },
-  {
-    "name": "Application",
-    "nav":"app",
-    "description":"GATB-Core provides you with convenient APIs to setup full-featured applications in a few line of codes.",
-    "trail_path":EXPERT_TRAIL, 
-    "snippets": EXPERT_APP_SNIPPETS
-  },
-  {
-    "name": "Storage",
-    "nav":"sto",
-    "description":"GATB-Core provides you with convenient APIs to handle HDF5-based storage of De Bruijn graphs and kmers.",
-    "trail_path":EXPERT_TRAIL, 
-    "snippets": EXPERT_STO_SNIPPETS,
-    "more":"http://gatb-core.gforge.inria.fr/doc/api/snippets_storage.html"
-  },
-  {
-    "name": "SNP detection",
-    "nav":"snp",
-    "description":"From theory to practice: how did we create DiscoSNP?",
-    "trail_path":ADVANCED_TRAIL, 
-    "snippets": ADVANCED_SNP_SNIPPETS,
-    "more":"https://github.com/GATB"
-  },
-  {
-    "name": "Bank",
-    "nav":"bank",
     "description":"Bank APIs provide classes and methods to read and write sequence files.<br/>Supported formats are Fasta and Fastq, plain text or compressed (gzip) files.<br/>In the following lessons, discover how easy it is to handle sequence files using GATB-Core 'Bank' API.",
     "trail_path":TRAINING_TRAIL, 
     "snippets": TRAINING_BANK_SNIPPETS
@@ -503,13 +443,6 @@ var ALL_SNIPPETS = [
     "description":"Graph API provides classes and methods to handle De Bruijn graphs.",
     "trail_path":TRAINING_TRAIL, 
     "snippets": TRAINING_GRAPH_SNIPPETS
-  },
-  {
-    "name": "read-corrector",
-    "nav":"read-corrector",
-    "description":"Write a complete GATB-Core based tool: a short read corrector.",
-    "trail_path":TRAINING_TRAIL, 
-    "snippets": TRAINING_CORREC_SNIPPETS
   }
 ];
 
