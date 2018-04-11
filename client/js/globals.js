@@ -41,7 +41,7 @@ var HTML_ELEMENT_JB_MON = "job_monitor";
 
 // Name of file used to compile code on server side
 var DEFAULT_SNIPPET_CODE_NAME = "gatb-snippet.cpp";
-var DEFAULT_DATA_SET_NAME="fasta_small";
+var DEFAULT_DATA_SET_NAME="fastq_small";
 
 // display trail lessons using flat panels or collapsible panels
 var TRAIL_CONCEPTS_FLAT_PANELS = false;
@@ -66,7 +66,7 @@ var TRAINING_TRAIL = "Training";
 
 // default snippet to show when URL parameter "snippet" is not provided
 //to gatb-compiler.html
-var DEFAULT_SNIPPET = "bank1";
+var DEFAULT_SNIPPET = "T-bank1";
 
 // Some strings to format snippet pages
 var CLASSES_TO_LEARN_INTRO = "In this lesson, you will learn to use: ";
@@ -261,7 +261,7 @@ var TRAINING_KMER_SNIPPETS = [
     "title" : "lesson 1: Iterating kmers from sequences",
     "description" : "Let's see how to iterate over all k-mers contained in a Fasta file.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/kmer1.cpp",
-    "data_set" : "fasta_small",
+    "data_set" : "fastq_small",
     "classes" : [
       {
         "name" : "ModelDirect",
@@ -277,7 +277,7 @@ var TRAINING_KMER_SNIPPETS = [
     "title" : "exercise 1: Iterating kmers using ModelCanonical",
     "description" : "In this lesson we will use ModelCanonical instead of ModelDirect to get kmers from sequences.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/kmer2.cpp",
-    "data_set" : "fasta_small",
+    "data_set" : "fastq_small",
     "classes_description":"<B>The problem with ModelDirect is:</B> "+
       "reads can be on forward or reverse strand, we do not know. So, each kmer may appear twice.<br/><br/>"+
       "A widespread solution consists in keeping only the forward or the reverse complement of a kmer.<br/>"+
@@ -318,7 +318,7 @@ var TRAINING_GRAPH_SNIPPETS = [
     "title" : "lesson 1: create a De Bruijn graph from a sequence file, then iterate over the nodes.",
     "description" : "Let's see how to iterate over all nodes contained in a De Bruijn graph.",
     "url":"https://raw.githubusercontent.com/GATB/gatb-core-tuto/master/snippets/graph1.cpp",
-    "data_set" : "fasta_small",
+    "data_set" : "fastq_small",
     "classes" : [
       {
         "name" : "Node",
